@@ -1,4 +1,4 @@
 interface:
-  display_name: "Senior Developer AI"
-  short_description: "Plan-first engineering workflow with Angular and .NET guidance"
-  default_prompt: "Use $skill to understand, plan, and implement a maintainable coding change, including Angular or .NET work when relevant."
+  display_name: "DevBuddy"
+  short_description: "Plan-first engineering workflow for code changes"
+  default_prompt: "Use $devbuddy to understand, plan, and implement a maintainable coding change."
