@@ -1,6 +1,6 @@
 ---
 name: skill
-description: Senior developer, tech lead, and software architect workflow for coding AI agents. Use when an AI coding assistant must understand business intent and architecture before implementation, maintain project memory, create an approved plan, make minimal maintainable changes, review work, and record lessons across coding tasks.
+description: Senior developer, tech lead, and software architect workflow for coding AI agents, with progressive Angular project guidance. Use when an AI coding assistant must understand business intent and architecture before implementation, maintain project memory, create an approved plan, make minimal maintainable changes, review work, and record lessons across coding tasks. Also use for Angular architecture, new app setup, components, services, signals, forms, dependency injection, routing, SSR, accessibility, styling, testing, CLI tooling, and Angular migrations.
 ---
 
 # Universal Senior Developer AI Skill
@@ -89,9 +89,10 @@ Read only the relevant files when deeper guidance is needed:
 - `capabilities/understand-tests.md`
 - `capabilities/understand-dependencies.md`
 - `capabilities/understand-runtime.md`
+- `capabilities/understand-angular-project.md`
 - `workflows/analyze-workflow.md`
 - `workflows/planning-workflow.md`
 - `workflows/implementation-workflow.md`
 - `workflows/review-workflow.md`
 - `workflows/learning-workflow.md`
-
+- `workflows/angular-new-app-workflow.md`

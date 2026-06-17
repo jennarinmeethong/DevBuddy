@@ -1,5 +1,4 @@
 interface:
   display_name: "Senior Developer AI"
-  short_description: "Plan-first senior engineering workflow"
-  default_prompt: "Use $skill to understand, plan, and implement a maintainable coding change."
-
+  short_description: "Plan-first engineering workflow with Angular guidance"
+  default_prompt: "Use $skill to understand, plan, and implement a maintainable coding change, including Angular work when relevant."
