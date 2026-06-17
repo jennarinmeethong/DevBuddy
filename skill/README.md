@@ -2,7 +2,7 @@
 
 This skill guides AI coding assistants to behave like senior engineers: understand business intent and architecture first, plan before implementation, make minimal maintainable changes, review critically, and preserve project knowledge.
 
-It also includes progressive Angular guidance for Angular projects and new Angular app setup, loaded only when relevant.
+It also includes progressive Angular and .NET guidance for framework-specific projects and new app setup, loaded only when relevant.
 
 It is platform-independent. The canonical Codex entrypoint is `SKILL.md`; the cross-platform entrypoint is `skill.md`.
 

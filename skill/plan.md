@@ -13,6 +13,7 @@ The skill package contains:
 - Persistent memory files for technical context, business context, decisions, and learning.
 - Focused principle, capability, workflow, and template documents.
 - Progressive Angular capability, workflow, and reference documents for Angular-specific tasks.
+- Progressive .NET capability, workflow, and reference documents for .NET-specific tasks.
 - ADR and report folders for durable records.
 
 ## Affected Files
@@ -21,7 +22,7 @@ The skill package is self-contained under this directory.
 
 ## Risks
 
-LOW: the package is documentation and workflow guidance only. Its main risk is overloading agents with too much process, so general workflow files stay concise and Angular details load only when relevant.
+LOW: the package is documentation and workflow guidance only. Its main risk is overloading agents with too much process, so general workflow files stay concise and Angular/.NET details load only when relevant.
 
 ## Alternatives
 

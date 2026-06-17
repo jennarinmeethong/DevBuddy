@@ -1,6 +1,6 @@
 ---
 name: skill
-description: Senior developer, tech lead, and software architect workflow for coding AI agents, with progressive Angular project guidance. Use when an AI coding assistant must understand business intent and architecture before implementation, maintain project memory, create an approved plan, make minimal maintainable changes, review work, and record lessons across coding tasks. Also use for Angular architecture, new app setup, components, services, signals, forms, dependency injection, routing, SSR, accessibility, styling, testing, CLI tooling, and Angular migrations.
+description: Senior developer, tech lead, and software architect workflow for coding AI agents, with progressive Angular and .NET project guidance. Use when an AI coding assistant must understand business intent and architecture before implementation, maintain project memory, create an approved plan, make minimal maintainable changes, review work, and record lessons across coding tasks. Also use for Angular architecture, new app setup, components, services, signals, forms, dependency injection, routing, SSR, accessibility, styling, testing, CLI tooling, and Angular migrations. Also use for .NET, C#, ASP.NET Core, Web APIs, EF Core, MSBuild, NuGet, dotnet test, VSTest, Microsoft.Testing.Platform, Blazor, MAUI, diagnostics, performance, and .NET version upgrades.
 ---
 
 # Universal Senior Developer AI Skill
@@ -40,6 +40,19 @@ Before implementation, identify:
 - Existing and expected behavior
 
 Ask when business rules cannot be discovered from code, docs, tests, or existing memory.
+
+## Specialized Skill Delegation
+
+For Angular or .NET tasks, keep this skill responsible for senior-engineering workflow: business analysis, architecture review, planning, implementation discipline, review, and memory updates.
+
+Before loading bundled Angular or .NET references, check whether the current session exposes a more specific installed skill that directly matches the task. If it does, use that specialized skill for framework-specific procedure and details, then return to this skill for planning, trade-offs, review, and learning.
+
+Use bundled references when no matching specialized skill is available or when the specialized skill does not cover the requested topic.
+
+Examples:
+
+- Angular components, forms, routing, rendering, migrations, CLI, or testing: prefer an installed Angular-specific skill when available.
+- .NET Web API, EF Core, MSBuild, NuGet, `dotnet test`, upgrades, diagnostics, MAUI, or Blazor: prefer an installed .NET-specific skill when available.
 
 ## Decision Heuristics
 
@@ -90,9 +103,11 @@ Read only the relevant files when deeper guidance is needed:
 - `capabilities/understand-dependencies.md`
 - `capabilities/understand-runtime.md`
 - `capabilities/understand-angular-project.md`
+- `capabilities/understand-dotnet-project.md`
 - `workflows/analyze-workflow.md`
 - `workflows/planning-workflow.md`
 - `workflows/implementation-workflow.md`
 - `workflows/review-workflow.md`
 - `workflows/learning-workflow.md`
 - `workflows/angular-new-app-workflow.md`
+- `workflows/dotnet-new-app-workflow.md`

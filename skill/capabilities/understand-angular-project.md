@@ -2,6 +2,8 @@
 
 Use this capability when the task targets Angular code or a repository contains Angular markers such as `angular.json`, `@angular/core`, `@angular/cli`, `ng`, standalone components, Angular routes, or Angular templates.
 
+If the current session exposes an installed Angular-specific skill that matches the task, use that specialized skill for Angular procedure and API details, then return to the senior developer workflow for planning, review, and memory updates. If no matching specialized skill is available, use the bundled references below.
+
 Before giving Angular guidance:
 
 - Identify the Angular version from `package.json`, `ng version`, lockfiles, or generated project files.
