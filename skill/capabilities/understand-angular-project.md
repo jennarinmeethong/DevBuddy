@@ -4,6 +4,8 @@ Use this capability when the task targets Angular code or a repository contains 
 
 If the current session exposes an installed Angular-specific skill that matches the task, use that specialized skill for Angular procedure and API details, then return to the senior developer workflow for planning, review, and memory updates. If no matching specialized skill is available, use the bundled references below.
 
+When choosing whether to install or delegate to a separate Angular skill, see `references/optional-specialized-skills.md`.
+
 Before giving Angular guidance:
 
 - Identify the Angular version from `package.json`, `ng version`, lockfiles, or generated project files.

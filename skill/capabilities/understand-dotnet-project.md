@@ -4,6 +4,8 @@ Use this capability when the task targets .NET, C#, ASP.NET Core, Blazor, MAUI, 
 
 If the current session exposes an installed .NET-specific skill that matches the task, use that specialized skill for .NET procedure and API details, then return to the senior developer workflow for planning, review, and memory updates. If no matching specialized skill is available, use the bundled references below.
 
+When choosing whether to install or delegate to a separate .NET skill, see `references/optional-specialized-skills.md`.
+
 Before giving .NET guidance:
 
 - Identify the SDK from `global.json` and `dotnet --version` when commands are feasible.

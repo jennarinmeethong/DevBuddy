@@ -49,6 +49,8 @@ Before loading bundled Angular or .NET references, check whether the current ses
 
 Use bundled references when no matching specialized skill is available or when the specialized skill does not cover the requested topic.
 
+When deciding whether to install or delegate to a specialized Angular or .NET skill, read `references/optional-specialized-skills.md`.
+
 Examples:
 
 - Angular components, forms, routing, rendering, migrations, CLI, or testing: prefer an installed Angular-specific skill when available.

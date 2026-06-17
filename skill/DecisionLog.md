@@ -23,6 +23,20 @@ Alternatives: Require users to install Angular/.NET skills separately; ignore sp
 Trade-offs: Optional delegation adds one selection step, but keeps the skill self-contained while allowing deeper installed skills to take precedence when available.
 Outcome: Add delegation guidance that prefers matching specialized skills when exposed in the current session and falls back to bundled references otherwise.
 
+Date: 2026-06-17
+Decision: Add an optional specialized skill catalog as a bundled reference.
+Context: Users may want to install Angular or .NET skills separately later, and agents need a stable place to map specialized topics to optional skills without relying on a temporary source checkout.
+Alternatives: Leave the mapping only in conversation history; add install instructions as a README; hardcode all specialized skill names into SKILL.md.
+Trade-offs: A reference file adds one more document to maintain, but keeps SKILL.md concise and avoids treating specialized skills as required dependencies.
+Outcome: Add `references/optional-specialized-skills.md` and link it from delegation guidance and Angular/.NET capabilities.
+
+Date: 2026-06-17
+Decision: Record upstream source collections for optional Angular and .NET skills.
+Context: Optional specialized skill guidance should make the upstream source repositories discoverable without making runtime behavior depend on temporary local checkouts.
+Alternatives: Leave source links only in conversation history; duplicate the source URLs in each Angular/.NET reference file.
+Trade-offs: A short source section adds minor maintenance overhead, but makes provenance visible where optional skill selection is documented.
+Outcome: Add source links to `references/optional-specialized-skills.md` for `dotnet/skills` and `angular/skills`.
+
 Use this format:
 
 ```text
