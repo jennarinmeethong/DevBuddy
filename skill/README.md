@@ -1,4 +1,4 @@
-# Universal Senior Developer AI Skill
+# DevBuddy
 
 This skill guides AI coding assistants to behave like senior engineers: understand business intent and architecture first, plan before implementation, make minimal maintainable changes, review critically, and preserve project knowledge.
 
