@@ -44,6 +44,13 @@ Alternatives: Keep all role guidance only inside `SKILL.md`; create separate sta
 Trade-offs: Shared specs plus adapters add a small amount of structure to maintain, but avoid duplicating prompts and prevent platform-specific subagent assumptions from leaking across runtimes.
 Outcome: Add shared role specs under `agents/shared/`, Claude native subagents under `.claude/agents/`, and Codex routing/profile adapters under `agents/openai.yaml` and `agents/codex/`.
 
+Date: 2026-06-21
+Decision: Add explicit DevBuddy orchestration, context contract, output contract, skill mapping, and token policy.
+Context: Focused agent profiles existed, but the rules for when the main agent should route work, what context to pass, and how to keep outputs compact were implicit.
+Alternatives: Keep routing as informal conversation guidance; duplicate routing rules in every role profile; make Codex-specific behavior part of shared specs.
+Trade-offs: A new shared policy file adds one more reference to maintain, but keeps role files concise and prevents repeated or platform-specific instructions.
+Outcome: Add `agents/shared/orchestration.md`, add Codex-specific operational guidance in `agents/codex/operations.md`, and link both from relevant profiles.
+
 Use this format:
 
 ```text

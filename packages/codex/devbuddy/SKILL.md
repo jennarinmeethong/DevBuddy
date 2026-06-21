@@ -64,6 +64,8 @@ DevBuddy can route work through focused role profiles while keeping this file as
 - `frontend`: frontend and Angular work, including UI behavior, accessibility, styling, state, routing, forms, and tests.
 - `backend`: backend and .NET work, including APIs, data models, persistence, runtime behavior, diagnostics, security, performance, and tests.
 
+When routing work through a focused role, read `agents/shared/orchestration.md` for the main-agent responsibilities, subagent routing rules, context contract, output contract, skill mapping, and token policy.
+
 Shared profile specs live in `agents/shared/`. Codex adapter prompts live in `agents/codex/` and routing metadata lives in `agents/openai.yaml`. Claude Code project subagents live in `.claude/agents/`.
 
 ## Adapter Maintenance

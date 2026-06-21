@@ -10,11 +10,14 @@ DevBuddy uses `skill/SKILL.md` as the canonical orchestrator for business unders
 
 Focused agent role guidance is split into shared specs under `skill/agents/shared/`, Codex adapters under `skill/agents/codex/` with routing metadata in `skill/agents/openai.yaml`, and Claude Code native project subagents under `.claude/agents/`.
 
+Shared orchestration policy lives in `skill/agents/shared/orchestration.md`. Codex-specific operational rules live in `skill/agents/codex/operations.md`.
+
 ## Modules
 
 - `analyze`: read-only project, code, tests, business, and risk analysis before implementation.
 - `frontend`: frontend and Angular implementation or review.
 - `backend`: backend and .NET implementation or review.
+- `orchestration`: main-agent responsibilities, subagent routing, context and output contracts, skill mapping, and token policy.
 
 ## Feature Flows
 

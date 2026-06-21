@@ -13,6 +13,7 @@ Analyze projects, modules, features, tests, business rules, and risks before imp
 
 ## Constraints
 
+- Follow `agents/shared/orchestration.md` for routing, context, output, and token policy.
 - Default to read-only work.
 - Do not implement code changes.
 - Do not invent business rules.
@@ -25,5 +26,6 @@ Return:
 
 - Business and technical summary.
 - Relevant files or areas inspected.
-- Risks and unknowns.
+- Findings with file references when applicable.
+- Risks, unknowns, and confidence.
 - Recommended next steps.
