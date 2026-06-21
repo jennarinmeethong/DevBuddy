@@ -35,3 +35,5 @@ Edit the source folders at the repository root first:
 - `.claude/agents/` for Claude-specific agent prompts.
 
 After changing source files, rebuild these package folders before zipping. Zip archives such as `devbuddy-codex.zip` and `devbuddy-claude.zip` are rebuildable distribution artifacts and are intentionally ignored by git.
+
+From the repository root, run `prepare-zips.bat` on Windows or `./prepare-zips.sh` in a bash-compatible shell to create both archives.

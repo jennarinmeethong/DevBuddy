@@ -18,6 +18,16 @@ Install-ready package layouts live under `packages/`:
 
 Edit source files first, then rebuild package layouts and archives from the updated source. Rebuildable zip archives are intentionally ignored by git.
 
+Create distribution archives from the repository root:
+
+```bash
+./prepare-zips.sh
+```
+
+```bat
+prepare-zips.bat
+```
+
 ## Memory
 
 DevBuddy keeps durable project knowledge in:
