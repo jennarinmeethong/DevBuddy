@@ -1,0 +1,34 @@
+interface:
+  display_name: "DevBuddy"
+  short_description: "Plan-first engineering workflow for code changes"
+  default_prompt: "Use $devbuddy to understand, plan, and implement a maintainable coding change."
+routing:
+  orchestrator: "SKILL.md"
+  memory:
+    - "Context.md"
+    - "BusinessContext.md"
+    - "DecisionLog.md"
+    - "KnowledgeBase.md"
+  profiles:
+    analyze:
+      description: "Read-only project, code, test, business, and risk analysis before implementation."
+      shared_spec: "agents/shared/analyze.md"
+      codex_adapter: "agents/codex/analyze.md"
+      default_mode: "read-only"
+      use_when:
+        - "The user asks to analyze, understand, inspect, review scope, identify risks, or create a plan before edits."
+        - "The task needs repository exploration without implementation."
+    frontend:
+      description: "Frontend and Angular implementation or review with accessibility, state, styling, visual behavior, and tests."
+      shared_spec: "agents/shared/frontend.md"
+      codex_adapter: "agents/codex/frontend.md"
+      default_mode: "implementation-with-approval"
+      use_when:
+        - "The task involves UI, Angular, components, routing, forms, state, styling, accessibility, responsive behavior, or frontend tests."
+    backend:
+      description: "Backend and .NET implementation or review with API, data, runtime, diagnostics, security, performance, and tests."
+      shared_spec: "agents/shared/backend.md"
+      codex_adapter: "agents/codex/backend.md"
+      default_mode: "implementation-with-approval"
+      use_when:
+        - "The task involves .NET, ASP.NET Core, Web API, EF Core, persistence, runtime configuration, diagnostics, security, performance, or backend tests."
