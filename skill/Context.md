@@ -2,15 +2,19 @@
 
 ## Project Structure
 
-Assumption: this memory file starts empty for a new skill package. Update it incrementally as the target project is analyzed.
+This package is a DevBuddy skill with shared memory files, capability references, workflow references, platform adapters, and optional framework guidance.
 
 ## Architecture
 
-No project architecture recorded yet.
+DevBuddy uses `skill/SKILL.md` as the canonical orchestrator for business understanding, planning discipline, approval before implementation, review, and memory updates.
+
+Focused agent role guidance is split into shared specs under `skill/agents/shared/`, Codex adapters under `skill/agents/codex/` with routing metadata in `skill/agents/openai.yaml`, and Claude Code native project subagents under `.claude/agents/`.
 
 ## Modules
 
-No modules recorded yet.
+- `analyze`: read-only project, code, tests, business, and risk analysis before implementation.
+- `frontend`: frontend and Angular implementation or review.
+- `backend`: backend and .NET implementation or review.
 
 ## Feature Flows
 

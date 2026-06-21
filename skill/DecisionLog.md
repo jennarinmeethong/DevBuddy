@@ -37,6 +37,13 @@ Alternatives: Leave source links only in conversation history; duplicate the sou
 Trade-offs: A short source section adds minor maintenance overhead, but makes provenance visible where optional skill selection is documented.
 Outcome: Add source links to `references/optional-specialized-skills.md` for `dotnet/skills` and `angular/skills`.
 
+Date: 2026-06-21
+Decision: Split DevBuddy role guidance into analyze, frontend, and backend agent profiles with platform adapters.
+Context: Users want Codex and Claude workflows to delegate analysis, frontend, and backend work to focused roles while preserving DevBuddy's senior-engineer workflow and shared project memory.
+Alternatives: Keep all role guidance only inside `SKILL.md`; create separate standalone skills for each role; create only Claude subagents without Codex routing.
+Trade-offs: Shared specs plus adapters add a small amount of structure to maintain, but avoid duplicating prompts and prevent platform-specific subagent assumptions from leaking across runtimes.
+Outcome: Add shared role specs under `agents/shared/`, Claude native subagents under `.claude/agents/`, and Codex routing/profile adapters under `agents/openai.yaml` and `agents/codex/`.
+
 Use this format:
 
 ```text

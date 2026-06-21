@@ -56,6 +56,26 @@ Examples:
 - Angular components, forms, routing, rendering, migrations, CLI, or testing: prefer an installed Angular-specific skill when available.
 - .NET Web API, EF Core, MSBuild, NuGet, `dotnet test`, upgrades, diagnostics, MAUI, or Blazor: prefer an installed .NET-specific skill when available.
 
+## Agent Profiles
+
+DevBuddy can route work through focused role profiles while keeping this file as the orchestrator for business understanding, planning, approval, review, and memory updates.
+
+- `analyze`: read-only project, code, tests, business, and risk analysis before implementation.
+- `frontend`: frontend and Angular work, including UI behavior, accessibility, styling, state, routing, forms, and tests.
+- `backend`: backend and .NET work, including APIs, data models, persistence, runtime behavior, diagnostics, security, performance, and tests.
+
+Shared profile specs live in `agents/shared/`. Codex adapter prompts live in `agents/codex/` and routing metadata lives in `agents/openai.yaml`. Claude Code project subagents live in `.claude/agents/`.
+
+## Adapter Maintenance
+
+Treat DevBuddy as one conceptual skill with platform-specific adapters.
+
+- Change shared behavior, role scope, constraints, output expectations, workflows, capabilities, references, or memory policy in `skill/` first.
+- Change `skill/agents/shared/` before changing platform adapters when a role's behavior should apply to both Codex and Claude.
+- Change `skill/agents/codex/` or `skill/agents/openai.yaml` only for Codex-specific routing, metadata, or prompt mechanics.
+- Change `.claude/agents/` only for Claude Code-specific subagent frontmatter, tool lists, or prompt mechanics.
+- After changing any shared role spec, review and update the matching Codex and Claude adapters so their scope, constraints, output shape, and validation expectations stay aligned.
+
 ## Decision Heuristics
 
 Prefer this order before adding new code:
