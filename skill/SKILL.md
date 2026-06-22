@@ -63,10 +63,16 @@ DevBuddy can route work through focused role profiles while keeping this file as
 - `analyze`: read-only project, code, tests, business, and risk analysis before implementation.
 - `frontend`: frontend and Angular work, including UI behavior, accessibility, styling, state, routing, forms, and tests.
 - `backend`: backend and .NET work, including APIs, data models, persistence, runtime behavior, diagnostics, security, performance, and tests.
+- `qa`: post-change quality review, regression risk, missing tests, acceptance checks, and verification strategy.
+- `operations`: explicitly requested operations, DevOps, infrastructure, CI/CD, Docker, release, deployment, hosting, runtime environment, and operational readiness work.
+- `docs`: README files, usage guides, migration notes, changelogs, skill docs, adapter docs, and documentation consistency.
+- `data`: data models, schema changes, migrations, data ownership, query behavior, compatibility, and data integrity.
+
+Use `operations` only when the user explicitly asks for operations, DevOps, infrastructure, release, deployment, hosting, CI/CD, Docker, runtime environment, or operational readiness help. Do not select it automatically for generic build failures, test failures, backend configuration, scripts, Dockerfiles, or deployment-adjacent files unless the user's request clearly names an operations intent.
 
 When routing work through a focused role, read `agents/shared/orchestration.md` for the main-agent responsibilities, subagent routing rules, context contract, output contract, skill mapping, and token policy.
 
-Shared profile specs live in `agents/shared/`. Codex adapter prompts live in `agents/codex/` and routing metadata lives in `agents/openai.yaml`. Claude Code project subagents live in `.claude/agents/`.
+Shared profile specs live in `agents/shared/`. Codex adapter prompts live in `agents/codex/` and routing metadata lives in `agents/openai.yaml`. Claude Code project subagents live in `.claude/agents/`. Install packages keep platform adapters separate: Codex packages include Codex adapter files, while Claude packages include Claude agents and shared specs without Codex routing files.
 
 ## Adapter Maintenance
 
@@ -77,6 +83,7 @@ Treat DevBuddy as one conceptual skill with platform-specific adapters.
 - Change `skill/agents/codex/` or `skill/agents/openai.yaml` only for Codex-specific routing, metadata, or prompt mechanics.
 - Change `.claude/agents/` only for Claude Code-specific subagent frontmatter, tool lists, or prompt mechanics.
 - After changing any shared role spec, review and update the matching Codex and Claude adapters so their scope, constraints, output shape, and validation expectations stay aligned.
+- Keep install packages separated by platform: Codex package uses `agents/openai.yaml` and `agents/codex/`; Claude package uses `.claude/agents/` and `skill/agents/shared/`.
 
 ## Decision Heuristics
 

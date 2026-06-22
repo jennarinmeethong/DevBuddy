@@ -19,6 +19,12 @@ Use a subagent when the task benefits from bounded, focused work:
 - Use `analyze` for read-only discovery, affected-area mapping, risk discovery, and implementation planning.
 - Use `frontend` for Angular, UI behavior, accessibility, responsive behavior, visual consistency, routing, state, forms, and frontend tests.
 - Use `backend` for .NET, APIs, data models, persistence, runtime configuration, security, diagnostics, performance, and backend tests.
+- Use `qa` for post-change quality review, regression risk, missing tests, acceptance checks, and verification strategy.
+- Use `docs` for README files, usage guides, migration notes, changelogs, skill docs, adapter docs, and documentation consistency.
+- Use `data` when correctness depends on data shape, migrations, ownership, query behavior, compatibility, or integrity.
+- Use `operations` only when the user explicitly asks for operations, DevOps, infrastructure, release, deployment, hosting, CI/CD, Docker, runtime environment, or operational readiness help.
+
+Do not select `operations` automatically for generic build failures, test failures, backend configuration, scripts, Dockerfiles, or deployment-adjacent files unless the user's request clearly names an operations intent.
 
 Avoid subagents when the task is narrow, the main agent already has enough context, or the routing overhead would exceed the benefit.
 

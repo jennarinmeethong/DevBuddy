@@ -6,18 +6,26 @@ This package is a DevBuddy skill with shared memory files, capability references
 
 ## Architecture
 
-DevBuddy uses `SKILL.md` as the canonical orchestrator for business understanding, planning discipline, approval before implementation, review, and memory updates.
+DevBuddy uses `skill/SKILL.md` as the canonical orchestrator for business understanding, planning discipline, approval before implementation, review, and memory updates.
 
-Focused agent role guidance is split into shared specs under `agents/shared/`, Codex adapters under `agents/codex/` with routing metadata in `agents/openai.yaml`.
+Focused agent role guidance is split into shared specs under `skill/agents/shared/`, Codex adapters under `skill/agents/codex/` with routing metadata in `skill/agents/openai.yaml`, and Claude Code native project subagents under `.claude/agents/`.
 
-Shared orchestration policy lives in `agents/shared/orchestration.md`. Codex-specific operational rules live in `agents/codex/operations.md`.
+Shared orchestration policy lives in `skill/agents/shared/orchestration.md`. Codex-specific operational rules live in `skill/agents/codex/operations.md`. The Codex operations role adapter is `skill/agents/codex/operations-profile.md` to avoid conflicting with those Codex-specific operational rules.
+
+Install packages are separated by assistant. `packages/codex/devbuddy/` contains Codex routing metadata, Codex adapters, and shared specs. `packages/claude/devbuddy/` contains Claude native agents and shared specs, without Codex routing metadata or Codex adapter files.
 
 ## Modules
 
 - `analyze`: read-only project, code, tests, business, and risk analysis before implementation.
 - `frontend`: frontend and Angular implementation or review.
 - `backend`: backend and .NET implementation or review.
+- `qa`: quality review, regression risk, missing tests, acceptance checks, and verification strategy.
+- `operations`: explicitly requested operations, DevOps, infrastructure, CI/CD, Docker, release, deployment, hosting, runtime environment, and operational readiness work.
+- `docs`: documentation implementation or review.
+- `data`: data models, schemas, migrations, ownership, query behavior, compatibility, and integrity.
 - `orchestration`: main-agent responsibilities, subagent routing, context and output contracts, skill mapping, and token policy.
+
+`operations` is opt-in only and must not be selected unless the user explicitly asks for operations, DevOps, infrastructure, release, deployment, hosting, CI/CD, Docker, runtime environment, or operational readiness help.
 
 ## Feature Flows
 
