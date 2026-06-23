@@ -6,7 +6,7 @@ Keep DevBuddy's main agent responsible for business understanding, planning, app
 
 ## Main Agent Responsibilities
 
-- Read the user request, DevBuddy entrypoint, memory, ADRs, and relevant source before planning.
+- Read the user request and DevBuddy entrypoint before planning; load memory, ADRs, source, and tests only when they materially affect the task.
 - Decide whether the work is small enough to handle directly or large enough to route through a focused role.
 - Provide subagents only the goal, relevant paths or areas, constraints, and expected output.
 - Integrate subagent findings into one business-aware plan or final answer.
@@ -60,6 +60,9 @@ Do not paste full files or long command output. Summarize evidence and cite the 
 
 ## Token Policy
 
+- Treat general skill questions as skill-only tasks: inspect relevant skill instructions or resources and skip project memory, ADRs, source, and tests.
+- Load `Context.md`, `BusinessContext.md`, `DecisionLog.md`, and `KnowledgeBase.md` only for project-specific technical context, business rules, prior decisions, or reusable lessons.
+- Inspect source and tests only for implementation, review, debugging, planning, or project-specific analysis.
 - Prefer targeted source inspection over broad reads.
 - Search before opening large files.
 - Load references only when the current task needs them.

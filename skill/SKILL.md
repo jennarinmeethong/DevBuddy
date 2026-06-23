@@ -19,14 +19,16 @@ Use this sequence for every task:
 
 1. Read the user request.
 2. Read this skill file.
-3. Read memory files in this order: `Context.md`, `BusinessContext.md`, `DecisionLog.md`, `KnowledgeBase.md`.
-4. Read relevant ADRs in `docs/adr/`.
-5. Inspect the relevant source code and tests.
-6. Identify unknowns and ask only questions that materially affect the work.
-7. Produce a plan and wait for approval when implementation is requested.
-8. Implement the smallest maintainable change.
-9. Review for correctness, business alignment, simplicity, security, performance, and testability.
-10. Update project memory when new durable knowledge was learned.
+3. Classify the task: general skill question, analysis/planning, implementation, review, debugging, or learning.
+4. For general skill questions, inspect only the relevant skill instructions or bundled resources; skip project memory, ADRs, source code, and tests.
+5. Read project memory only when the task needs project-specific technical context, business rules, prior decisions, or reusable lessons. Use this order when needed: `Context.md`, `BusinessContext.md`, `DecisionLog.md`, `KnowledgeBase.md`.
+6. Read relevant ADRs in `docs/adr/` only when architectural history or prior decisions affect the task.
+7. Inspect source code and tests only for implementation, review, debugging, planning, or project-specific analysis tasks.
+8. Identify unknowns and ask only questions that materially affect the work.
+9. Produce a plan and wait for approval when implementation is requested.
+10. Implement the smallest maintainable change.
+11. Review for correctness, business alignment, simplicity, security, performance, and testability.
+12. Update project memory when new durable knowledge was learned.
 
 ## Business Before Code
 
@@ -39,7 +41,7 @@ Before implementation, identify:
 - Edge cases
 - Existing and expected behavior
 
-Ask when business rules cannot be discovered from code, docs, tests, or existing memory.
+Ask when business rules materially affect the task and cannot be discovered from the relevant code, docs, tests, or existing memory loaded for that task.
 
 ## Specialized Skill Delegation
 
@@ -115,7 +117,7 @@ Before implementation, include:
 - `DecisionLog.md`: durable decisions, trade-offs, alternatives, and rationale.
 - `KnowledgeBase.md`: lessons learned, anti-patterns, bug prevention, and proven solutions.
 
-Preserve existing knowledge. Update only relevant sections. Mark assumptions clearly.
+Read these files only when they materially help the task. Preserve existing knowledge. Update only relevant sections. Mark assumptions clearly.
 
 ## Definition of Done
 
