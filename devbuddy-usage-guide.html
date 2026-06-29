@@ -515,7 +515,8 @@
         <p class="hero-summary">
           DevBuddy คือ skill ที่เปลี่ยน AI coding assistant ให้ทำงานแบบ senior developer:
           เข้าใจ business และ architecture ก่อน, วางแผนก่อนแก้, เปลี่ยนให้น้อยแต่ดี,
-          review งานจริงจัง, และเก็บความรู้ที่ควรจำไว้ใช้ต่อในงานถัดไป
+          review งานจริงจัง, และเก็บความรู้ที่ควรจำไว้ใช้ต่อในงานถัดไป คู่มือนี้อธิบาย
+          ภาพรวม วิธีทำงาน โครงสร้างไฟล์ การใช้งาน และบทบาทของ sub agent สำหรับคนที่เพิ่งเข้ามาดู repo
         </p>
       </div>
       <aside class="hero-panel" aria-label="ข้อมูลสำคัญ">
@@ -530,8 +531,16 @@
             <dd><code>skill/SKILL.md</code></dd>
           </div>
           <div>
+            <dt>Manual file</dt>
+            <dd><code>devbuddy-usage-guide.html</code></dd>
+          </div>
+          <div>
             <dt>Claude Code command</dt>
             <dd><code>/devbuddy</code></dd>
+          </div>
+          <div>
+            <dt>Primary audience</dt>
+            <dd>users, maintainers, agent authors</dd>
           </div>
           <div>
             <dt>Sub agent roles</dt>
@@ -545,6 +554,7 @@
   <nav class="top-nav" aria-label="สารบัญ">
     <div class="wrap">
       <a href="#what">คืออะไร</a>
+      <a href="#essentials">ข้อมูลจำเป็น</a>
       <a href="#use-cases">ใช้ทำอะไร</a>
       <a href="#how-it-works">ทำงานอย่างไร</a>
       <a href="#structure">โครงสร้างไฟล์</a>
@@ -597,6 +607,96 @@
           </p>
         </article>
       </div>
+    </section>
+
+    <section id="essentials" class="band compact">
+      <div class="section-head">
+        <div>
+          <h2>ข้อมูลจำเป็นก่อนใช้</h2>
+          <p class="lead">
+            ถ้าเพิ่งเปิด repo นี้เป็นครั้งแรก ให้เริ่มจากส่วนนี้ก่อน เพราะเป็นจุดที่ทำให้เข้าใจว่า
+            DevBuddy ถูกโหลดจากไหน ใช้เมื่อไหร่ และควรคาดหวัง output แบบใดจาก agent
+          </p>
+        </div>
+        <div class="aside-note">
+          คิดว่า DevBuddy เป็น <strong>workflow layer</strong> ที่ครอบการทำงานของ coding agent
+          ไม่ใช่ framework, CLI, package manager หรือ test runner ใหม่
+        </div>
+      </div>
+
+      <div class="grid three">
+        <article class="info-card">
+          <h3>Skill entrypoint</h3>
+          <p>
+            ไฟล์หลักคือ <code>skill/SKILL.md</code> ใช้บอก agent ว่าต้องคิดแบบ business-first,
+            plan ก่อน implementation, review หลังแก้ และ update memory เมื่อมีความรู้ที่ควรจำ
+          </p>
+        </article>
+        <article class="info-card">
+          <h3>Claude Code loading path</h3>
+          <p>
+            คำสั่ง <code>/devbuddy</code> จะเห็นได้เมื่อมี skill ที่
+            <code>.claude/skills/devbuddy/SKILL.md</code> ใน project หรือ
+            <code>~/.claude/skills/devbuddy/SKILL.md</code> สำหรับ global install
+          </p>
+        </article>
+        <article class="info-card">
+          <h3>Package path</h3>
+          <p>
+            <code>packages/claude/devbuddy/</code> เป็น layout สำหรับแจกจ่ายหรือสร้าง zip
+            ไม่ใช่ path ที่ Claude Code auto-load จาก repo โดยตรง
+          </p>
+        </article>
+        <article class="info-card">
+          <h3>Agent model</h3>
+          <p>
+            Main agent เป็นคนคุมภาพรวม ส่วน sub agent เป็น role เฉพาะทางที่ถูกเรียกเมื่อช่วยลด risk,
+            ลด context load หรือช่วยตรวจคนละมุม
+          </p>
+        </article>
+        <article class="info-card">
+          <h3>Memory model</h3>
+          <p>
+            Memory files ไม่ได้ถูกอ่านทุกงาน จะโหลดเฉพาะเมื่อมีผลต่อ project-specific context,
+            business rules, prior decisions หรือ lessons learned
+          </p>
+        </article>
+        <article class="info-card">
+          <h3>Expected behavior</h3>
+          <p>
+            งาน implementation ควรมี plan, risks, alternatives, confidence และ verification
+            ก่อนหรือระหว่างลงมือ ไม่ใช่แก้โค้ดทันทีโดยไม่อ่านบริบท
+          </p>
+        </article>
+      </div>
+
+      <h3>คำสั้น ๆ ที่ใช้เรียก skill</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>สถานการณ์</th>
+            <th>ตัวอย่างคำขอ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>อยากให้ agent ทำงานตาม workflow หลัก</td>
+            <td><code>/devbuddy ช่วยวิเคราะห์และวางแผนก่อนแก้ feature นี้</code></td>
+          </tr>
+          <tr>
+            <td>อยากได้ review แบบเข้ม</td>
+            <td><code>review PR นี้แบบ DevBuddy ให้ findings ก่อน summary</code></td>
+          </tr>
+          <tr>
+            <td>อยากใช้ role เฉพาะทาง</td>
+            <td><code>ใช้ DevBuddy frontend profile ตรวจ responsive และ accessibility risk</code></td>
+          </tr>
+          <tr>
+            <td>อยากเข้าใจ codebase ก่อนทำ</td>
+            <td><code>ใช้ DevBuddy analyze profile map affected files, risks และ missing tests</code></td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
     <section id="use-cases" class="band compact">
@@ -776,12 +876,16 @@
           <p>entrypoint หลักของ DevBuddy และ source of truth สำหรับ workflow, routing, planning, memory และ definition of done</p>
         </div>
         <div class="path-item">
+          <code>skill/README.md</code>
+          <p>คำอธิบายสั้นสำหรับคนอ่าน repo ว่า DevBuddy คืออะไร มี role อะไร และ path สำคัญอยู่ที่ไหน</p>
+        </div>
+        <div class="path-item">
           <code>skill/agents/shared/</code>
           <p>role specs กลางสำหรับ sub agent: orchestration, analyze, frontend, backend, qa, docs, data และ operations</p>
         </div>
         <div class="path-item">
           <code>.claude/skills/devbuddy/</code>
-          <p>project-local Claude Code skill path ที่ทำให้เรียก <code>/devbuddy</code> ได้จาก repo นี้</p>
+          <p>project-local Claude Code skill path ที่ทำให้เรียก <code>/devbuddy</code> ได้จาก repo นี้ ควร sync กับ source เมื่อ behavior เปลี่ยน</p>
         </div>
         <div class="path-item">
           <code>.claude/agents/</code>
@@ -794,6 +898,10 @@
         <div class="path-item">
           <code>prepare-zips.sh</code> และ <code>prepare-zips.bat</code>
           <p>script สำหรับ rebuild distribution archive จาก repository root</p>
+        </div>
+        <div class="path-item">
+          <code>devbuddy-usage-guide.html</code>
+          <p>คู่มือ static HTML สำหรับอธิบาย skill ให้ผู้ใช้ maintainer หรือคนเขียน adapter อ่านได้โดยไม่ต้องเปิดหลายไฟล์พร้อมกัน</p>
         </div>
       </div>
     </section>
@@ -837,6 +945,30 @@
         </article>
       </div>
 
+      <h3>Sub agent lifecycle</h3>
+      <div class="flow" aria-label="ลำดับการเรียก sub agent">
+        <article class="flow-step">
+          <strong>1</strong>
+          <h3>Decide</h3>
+          <p>Main agent ประเมินว่างานนี้ควรทำเองหรือ route ให้ role เฉพาะทาง เพราะมี risk, scope หรือ context กว้าง</p>
+        </article>
+        <article class="flow-step">
+          <strong>2</strong>
+          <h3>Brief</h3>
+          <p>ส่ง goal, success criteria, relevant paths, constraints และ output shape ให้แคบที่สุดที่ยังทำงานได้</p>
+        </article>
+        <article class="flow-step">
+          <strong>3</strong>
+          <h3>Inspect</h3>
+          <p>Sub agent อ่านเฉพาะไฟล์หรือคำสั่งที่เกี่ยวข้อง แล้วคืน findings, risks, unknowns และ confidence</p>
+        </article>
+        <article class="flow-step">
+          <strong>4</strong>
+          <h3>Integrate</h3>
+          <p>Main agent รวมผลกับ business context, ตัดสินใจแนวทาง, ทำ plan/final answer และรับผิดชอบคำตอบสุดท้าย</p>
+        </article>
+      </div>
+
       <h3>เมื่อไหร่ควรเรียก sub agent</h3>
       <div class="grid two">
         <article class="info-card">
@@ -858,6 +990,31 @@
             <li>ต้องการ operations โดยผู้ใช้ไม่ได้ระบุ DevOps/CI/CD/deployment/runtime intent</li>
             <li>ผลลัพธ์ที่ต้องการเป็นคำตอบสั้น ๆ ไม่ใช่งานวิเคราะห์หรือเปลี่ยนโค้ด</li>
           </ul>
+        </article>
+      </div>
+
+      <h3>Sub agent ไม่ใช่อะไร</h3>
+      <div class="grid three">
+        <article class="info-card">
+          <h3>ไม่ใช่คนตัดสินใจแทน</h3>
+          <p>
+            Sub agent ให้ evidence และ recommendation ได้ แต่ main agent ยังต้องเป็นคนชั่ง trade-off,
+            ผูกกับ business goal และสื่อสาร final answer
+          </p>
+        </article>
+        <article class="info-card">
+          <h3>ไม่ใช่ข้ออ้างให้อ่านทุกอย่าง</h3>
+          <p>
+            การ route งานต้องลด context load ไม่ใช่เพิ่ม noise ถ้าต้องส่ง repo ทั้งหมดให้ sub agent
+            อาจแปลว่างานยังไม่ถูกแบ่งขอบเขต
+          </p>
+        </article>
+        <article class="info-card">
+          <h3>ไม่ใช่ role operations อัตโนมัติ</h3>
+          <p>
+            <code>operations</code> ใช้เฉพาะเมื่อผู้ใช้ระบุ DevOps, CI/CD, Docker, deployment,
+            hosting, release หรือ runtime environment อย่างชัดเจน
+          </p>
         </article>
       </div>
 
@@ -1039,6 +1196,39 @@
         </div>
       </div>
 
+      <h3>Activation checklist</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ต้องการใช้งานแบบไหน</th>
+            <th>ต้องมีอะไร</th>
+            <th>เช็คอย่างไร</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ใช้ใน repo นี้</td>
+            <td><code>.claude/skills/devbuddy/SKILL.md</code></td>
+            <td>เปิด Claude Code จาก repo root แล้วเรียก <code>/devbuddy</code></td>
+          </tr>
+          <tr>
+            <td>ใช้เป็น global skill</td>
+            <td><code>~/.claude/skills/devbuddy/SKILL.md</code></td>
+            <td>restart Claude Code หลังติดตั้ง แล้วตรวจว่า slash command ปรากฏ</td>
+          </tr>
+          <tr>
+            <td>แจกจ่ายให้ project อื่น</td>
+            <td>package หรือ zip ที่ rebuild จาก source ล่าสุด</td>
+            <td>รัน <code>prepare-zips</code> จาก repository root แล้วติดตั้ง path ปลายทางให้ถูก</td>
+          </tr>
+          <tr>
+            <td>ใช้ sub agent adapters</td>
+            <td><code>.claude/agents/devbuddy-*.md</code> และ <code>skill/agents/shared/</code></td>
+            <td>ตรวจชื่อ role, scope, constraints และ output ให้ตรงกับ shared spec</td>
+          </tr>
+        </tbody>
+      </table>
+
       <h3>Prompt examples</h3>
       <div class="grid two">
         <article class="step-card">
@@ -1064,6 +1254,24 @@ security concern และ tests ที่ควรเพิ่ม</code></pre>
           <pre><code>review change นี้แบบ DevBuddy
 ให้ findings ก่อน summary, ระบุ file/line references,
 test gaps, regression risks และ recommended verification</code></pre>
+        </article>
+        <article class="step-card">
+          <h3>งาน documentation</h3>
+          <pre><code>ใช้ DevBuddy docs profile ทำ usage guide ของ skill นี้
+ให้ตรวจ SKILL.md, shared agent specs, package path
+และสรุป maintenance notes ที่คนใหม่ต้องรู้</code></pre>
+        </article>
+        <article class="step-card">
+          <h3>งาน data</h3>
+          <pre><code>ใช้ DevBuddy data profile วิเคราะห์ schema change นี้
+ระบุ data ownership, compatibility risk,
+migration impact และ rollback concern</code></pre>
+        </article>
+        <article class="step-card">
+          <h3>งาน operations แบบ explicit</h3>
+          <pre><code>ใช้ DevBuddy operations profile ตรวจ CI/CD pipeline นี้
+เพราะโจทย์นี้เกี่ยวกับ deployment readiness,
+runtime environment และ release risk โดยตรง</code></pre>
         </article>
       </div>
 
@@ -1126,6 +1334,15 @@ prepare-zips.bat</code></pre>
         อย่าแก้เฉพาะไฟล์ใน <code>packages/claude/devbuddy/</code> แล้วลืม source หลัก
         เพราะ package layout เป็นผลลัพธ์สำหรับ install/distribution และควร rebuild ได้
       </div>
+
+      <h3>ก่อนปล่อยหรือส่งต่อให้คนอื่น</h3>
+      <ul class="checklist">
+        <li>ตรวจว่า <code>skill/SKILL.md</code> และ <code>.claude/skills/devbuddy/SKILL.md</code> ยังสื่อ behavior เดียวกัน</li>
+        <li>ตรวจว่า role ใน <code>skill/agents/shared/</code> ตรงกับ adapter ใน <code>.claude/agents/</code></li>
+        <li>ตรวจว่า manual นี้ยังอธิบาย path, command, role และ package layout ตรงกับ repo ปัจจุบัน</li>
+        <li>rebuild package layout หรือ zip เมื่อมีการเปลี่ยน source ที่ต้องแจกจ่าย</li>
+        <li>เปิดไฟล์ HTML ใน browser หลังแก้ เพื่อดูว่าตาราง โค้ด และข้อความยาวยังอ่านได้บนจอเล็ก</li>
+      </ul>
     </section>
 
     <section id="checklist" class="band">
@@ -1151,6 +1368,8 @@ prepare-zips.bat</code></pre>
         <li>ระบุ unknowns และถามเฉพาะคำถามที่มีผลต่อ correctness</li>
         <li>มี plan ก่อน implementation เมื่อเป็นงานแก้โค้ด</li>
         <li>เลือก sub agent เมื่อช่วยลด risk หรือ context load จริง</li>
+        <li>ส่ง context contract ให้ sub agent แคบพอและครบพอ</li>
+        <li>รวมผลจาก sub agent ด้วย judgment ของ main agent ไม่ paste ผลลัพธ์ดิบ</li>
         <li>ไม่ใช้ operations role เว้นแต่ผู้ใช้ระบุ operations intent</li>
         <li>change มีขอบเขตเล็กและ maintainable</li>
         <li>review ครอบคลุม correctness, business, security, performance และ testability</li>
