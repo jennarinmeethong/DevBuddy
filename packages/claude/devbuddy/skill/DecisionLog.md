@@ -72,6 +72,13 @@ Alternatives: Zip the `skill/` folder directly; keep a project bundle archive.
 Trade-offs: Building a temporary top-level `devbuddy/` folder avoids manual packaging mistakes and keeps the install archive focused.
 Outcome: `devbuddy-claude.zip` is a Claude skill install archive with a top-level `devbuddy/` skill folder containing `SKILL.md`.
 
+Date: 2026-06-29
+Decision: Ask before switching command tools and prefer dedicated test folders for new tests.
+Context: The user wants DevBuddy to avoid guessing alternative package managers or commands when a requested command is missing, and wants newly created tests separated into a folder layout similar to documentation.
+Alternatives: Automatically try common alternatives such as `bun`, `yarn`, or `pnpm`; colocate new tests next to source files by default.
+Trade-offs: Asking may add one interaction when local tooling is missing, but prevents unintended tool choices. A dedicated `tests/` folder improves separation, while existing intentional repository layouts still take precedence.
+Outcome: Add command fallback and new-test placement conventions to `SKILL.md` and `workflows/implementation-workflow.md`.
+
 Use this format:
 
 ```text
