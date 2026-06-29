@@ -69,9 +69,12 @@ Examples:
 DevBuddy can route work through focused role profiles while keeping this file as the orchestrator for business understanding, planning, approval, review, and memory updates.
 
 - `analyze`: read-only project, code, tests, business, and risk analysis before implementation.
+- `ba`: business analysis including stakeholders, workflows, requirements, domain rules, acceptance criteria, priorities, and business readiness.
+- `sa`: system analysis and solution architecture including system boundaries, module responsibilities, APIs, integrations, data flow, runtime behavior, non-functional requirements, and architecture risks.
 - `frontend`: frontend stack work including Angular, React, Next.js UI, Vue, Nuxt UI, Svelte, jQuery, Blazor UI, UI behavior, accessibility, styling, state, routing, forms, and tests.
 - `backend`: backend stack work including .NET, ASP.NET Core, Java, Go, Rust, Node.js, Python, APIs, data models, persistence, runtime behavior, diagnostics, security, performance, and tests.
 - `qa`: post-change quality review, regression risk, missing tests, acceptance checks, and verification strategy.
+- `tester`: test case design, manual or automated test execution, defect reproduction, test data, acceptance validation, regression suites, and test evidence summaries.
 - `operations`: explicitly requested operations, DevOps, infrastructure, CI/CD, Docker, release, deployment, hosting, runtime environment, and operational readiness work.
 - `docs`: README files, usage guides, migration notes, changelogs, skill docs, adapter docs, and documentation consistency.
 - `data`: data models, schema changes, migrations, data ownership, query behavior, compatibility, and data integrity.

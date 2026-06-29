@@ -72,6 +72,13 @@ Alternatives: Zip the `skill/` folder directly; keep a project bundle archive.
 Trade-offs: Building a temporary top-level `devbuddy/` folder avoids manual packaging mistakes and keeps the install archive focused.
 Outcome: `devbuddy-claude.zip` is a Claude skill install archive with a top-level `devbuddy/` skill folder containing `SKILL.md`.
 
+Date: 2026-06-29
+Decision: Add BA, SA, and Tester DevBuddy subagent profiles while keeping QA as quality review.
+Context: The user requested subagents for QA, BA, SA, and Tester. QA already existed, but BA, SA, and Tester need dedicated responsibilities so requirement analysis, system analysis, and test execution do not collapse into generic analysis or QA review.
+Alternatives: Expand `analyze` and `qa` to cover these duties; rename existing QA to tester; create only Claude adapters without shared specs.
+Trade-offs: More profiles increase adapter maintenance, but clearer role boundaries improve routing, output quality, and team-style handoffs. Keeping QA separate preserves post-change quality review while Tester focuses on test cases, execution, and evidence.
+Outcome: Add shared and Claude profiles for `ba`, `sa`, and `tester`; update agent routing, role lists, package copies, and user-facing guidance.
+
 Use this format:
 
 ```text

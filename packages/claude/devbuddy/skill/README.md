@@ -8,12 +8,15 @@ It is packaged as a Claude skill. The canonical entrypoint is `SKILL.md`.
 
 ## Agent Profiles
 
-DevBuddy defines seven role profiles that share the same memory files and senior-engineer workflow:
+DevBuddy defines ten role profiles that share the same memory files and senior-engineer workflow:
 
 - `analyze`: read-only project, code, tests, business, and risk analysis before implementation.
+- `ba`: business requirements, stakeholders, workflows, domain rules, acceptance criteria, priorities, and business readiness.
+- `sa`: system analysis, architecture boundaries, module responsibilities, integrations, data flow, runtime behavior, non-functional requirements, and architecture risks.
 - `frontend`: frontend and Angular work, including UI behavior, accessibility, styling, state, routing, forms, and tests.
 - `backend`: backend and .NET work, including APIs, data models, persistence, runtime behavior, diagnostics, security, performance, and tests.
 - `qa`: post-change quality review, regression risk, test gaps, acceptance checks, and verification strategy.
+- `tester`: test case design, manual or automated test execution, defect reproduction, test data, acceptance validation, regression suites, and test evidence summaries.
 - `operations`: explicitly requested operations, DevOps, infrastructure, CI/CD, Docker, release, deployment, hosting, runtime environment, and operational readiness work.
 - `docs`: README files, usage guides, migration notes, changelogs, skill docs, adapter docs, and documentation consistency.
 - `data`: data models, schema changes, migrations, data ownership, query behavior, compatibility, and data integrity.
@@ -27,9 +30,12 @@ Shared role specs live in `agents/shared/`.
 Claude Code can use native project subagents from `.claude/agents/`:
 
 - `devbuddy-analyze`
+- `devbuddy-ba`
+- `devbuddy-sa`
 - `devbuddy-frontend`
 - `devbuddy-backend`
 - `devbuddy-qa`
+- `devbuddy-tester`
 - `devbuddy-operations`
 - `devbuddy-docs`
 - `devbuddy-data`

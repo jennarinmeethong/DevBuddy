@@ -79,6 +79,13 @@ Alternatives: Automatically try common alternatives such as `bun`, `yarn`, or `p
 Trade-offs: Asking may add one interaction when local tooling is missing, but prevents unintended tool choices. A dedicated `tests/` folder improves separation, while existing intentional repository layouts still take precedence.
 Outcome: Add command fallback and new-test placement conventions to `SKILL.md` and `workflows/implementation-workflow.md`.
 
+Date: 2026-06-29
+Decision: Add BA, SA, and Tester DevBuddy subagent profiles while keeping QA as quality review.
+Context: The user requested subagents for QA, BA, SA, and Tester. QA already existed, but BA, SA, and Tester need dedicated responsibilities so requirement analysis, system analysis, and test execution do not collapse into generic analysis or QA review.
+Alternatives: Expand `analyze` and `qa` to cover these duties; rename existing QA to tester; create only Claude adapters without shared specs.
+Trade-offs: More profiles increase adapter maintenance, but clearer role boundaries improve routing, output quality, and team-style handoffs. Keeping QA separate preserves post-change quality review while Tester focuses on test cases, execution, and evidence.
+Outcome: Add shared and Claude profiles for `ba`, `sa`, and `tester`; update agent routing, role lists, package copies, and user-facing guidance.
+
 Use this format:
 
 ```text

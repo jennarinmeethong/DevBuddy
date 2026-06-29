@@ -17,9 +17,12 @@ Keep DevBuddy's main agent responsible for business understanding, planning, app
 Use a subagent when the task benefits from bounded, focused work:
 
 - Use `analyze` for read-only discovery, affected-area mapping, risk discovery, and implementation planning.
+- Use `ba` for business requirements, stakeholders, workflows, domain rules, acceptance criteria, prioritization, and business readiness.
+- Use `sa` for system analysis, architecture boundaries, module responsibilities, API or integration contracts, data flow, runtime behavior, non-functional requirements, and architecture risk.
 - Use `frontend` for Angular, React, Next.js UI, Vue, Nuxt UI, Svelte, jQuery, Blazor UI, UI behavior, accessibility, responsive behavior, visual consistency, routing, state, forms, and frontend tests.
 - Use `backend` for .NET, ASP.NET Core, Java, Go, Rust, Node.js, Python, APIs, data models, persistence, runtime configuration, security, diagnostics, performance, and backend tests.
 - Use `qa` for post-change quality review, regression risk, missing tests, acceptance checks, and verification strategy.
+- Use `tester` for test case design, manual or automated test execution, defect reproduction, test data, acceptance validation, regression suites, and test evidence summaries.
 - Use `docs` for README files, usage guides, migration notes, changelogs, skill docs, adapter docs, and documentation consistency.
 - Use `data` when correctness depends on data shape, migrations, ownership, query behavior, compatibility, or integrity.
 - Use `operations` only when the user explicitly asks for operations, DevOps, infrastructure, release, deployment, hosting, CI/CD, Docker, runtime environment, or operational readiness help.
