@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DevBuddy Skill Manual</title>
+  <title>DevBuddy Skill Wiki</title>
   <style>
     :root {
       color-scheme: light;
-      --bg: #f6f7f9;
+      --bg: #f8fafc;
       --surface: #ffffff;
       --ink: #1d2733;
       --muted: #5d6878;
@@ -24,7 +24,7 @@
       --green: #15803d;
       --green-soft: #eaf7ee;
       --code-bg: #eef2f7;
-      --shadow: 0 18px 45px rgba(31, 41, 55, 0.08);
+      --shadow: 0 8px 24px rgba(31, 41, 55, 0.06);
     }
 
     * {
@@ -53,26 +53,27 @@
     }
 
     .wrap {
-      width: min(1160px, calc(100% - 40px));
+      width: min(1240px, calc(100% - 40px));
       margin: 0 auto;
     }
 
     .hero {
-      background: var(--navy);
-      color: #ffffff;
-      padding: 48px 0 34px;
+      background: var(--surface);
+      color: var(--ink);
+      border-bottom: 1px solid var(--line);
+      padding: 30px 0 24px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
-      gap: 28px;
-      align-items: end;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+      gap: 32px;
+      align-items: start;
     }
 
     .eyebrow {
       margin: 0 0 10px;
-      color: #9ad7d0;
+      color: var(--teal);
       font-size: 0.82rem;
       font-weight: 700;
       letter-spacing: 0.09em;
@@ -87,28 +88,28 @@
 
     h1 {
       margin: 0;
-      max-width: 780px;
-      font-size: clamp(2.1rem, 5vw, 4.2rem);
-      line-height: 1.12;
+      max-width: 900px;
+      font-size: clamp(2rem, 3vw, 3.2rem);
+      line-height: 1.15;
     }
 
     .hero-summary {
-      max-width: 820px;
+      max-width: 900px;
       margin: 18px 0 0;
-      color: #d8dee8;
+      color: var(--muted);
       font-size: 1.08rem;
     }
 
     .hero-panel {
-      background: var(--navy-2);
-      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: #fbfcfe;
+      border: 1px solid var(--line);
       border-radius: 8px;
       padding: 18px;
     }
 
     .hero-panel h2 {
       margin: 0 0 12px;
-      color: #ffffff;
+      color: var(--ink);
       font-size: 1rem;
     }
 
@@ -119,66 +120,87 @@
     }
 
     .hero-panel dt {
-      color: #9fb1c8;
+      color: var(--muted);
       font-size: 0.82rem;
     }
 
     .hero-panel dd {
       margin: 2px 0 0;
-      color: #ffffff;
+      color: var(--ink);
       font-weight: 700;
+    }
+
+    .doc-shell {
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
+      gap: 34px;
+      align-items: start;
+      padding: 22px 0 56px;
     }
 
     .top-nav {
       position: sticky;
-      top: 0;
+      top: 16px;
       z-index: 20;
-      background: rgba(255, 255, 255, 0.96);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(14px);
-      overflow-x: hidden;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: var(--shadow);
     }
 
-    .top-nav .wrap {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-top: 10px;
-      padding-bottom: 10px;
+    .top-nav h2 {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .top-nav a {
-      flex: 0 0 auto;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 7px 10px;
+      display: block;
+      border-radius: 6px;
+      padding: 7px 8px;
       color: var(--ink);
-      background: #ffffff;
       font-size: 0.92rem;
-      white-space: nowrap;
     }
 
     .top-nav a:hover {
-      border-color: var(--teal);
+      background: var(--teal-soft);
       color: var(--teal);
       text-decoration: none;
     }
 
     main {
-      padding: 26px 0 56px;
+      padding: 0;
     }
 
-    section {
-      margin: 22px 0;
-      scroll-margin-top: 78px;
-    }
-
-    .band {
+    .doc-content {
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: 8px;
       box-shadow: var(--shadow);
-      padding: 26px;
+      padding: 0 30px 12px;
+    }
+
+    section {
+      margin: 0;
+      padding: 28px 0;
+      border-top: 1px solid var(--line);
+      scroll-margin-top: 24px;
+    }
+
+    section:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .band {
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 28px 0;
     }
 
     .band.compact {
@@ -187,8 +209,8 @@
 
     .section-head {
       display: grid;
-      grid-template-columns: minmax(0, 0.72fr) minmax(240px, 0.28fr);
-      gap: 22px;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, 0.34fr);
+      gap: 18px;
       align-items: start;
       margin-bottom: 18px;
     }
@@ -203,7 +225,7 @@
 
     h2 {
       margin: 0;
-      font-size: clamp(1.45rem, 2.3vw, 2rem);
+      font-size: clamp(1.45rem, 2vw, 1.9rem);
       line-height: 1.28;
     }
 
@@ -227,6 +249,7 @@
       background: var(--teal-soft);
       padding: 12px 14px;
       color: #194540;
+      border-radius: 0 6px 6px 0;
     }
 
     .warning-note {
@@ -234,6 +257,7 @@
       background: var(--amber-soft);
       padding: 12px 14px;
       color: #62350b;
+      border-radius: 0 6px 6px 0;
     }
 
     .success-note {
@@ -241,6 +265,7 @@
       background: var(--green-soft);
       padding: 12px 14px;
       color: #164a27;
+      border-radius: 0 6px 6px 0;
     }
 
     .grid {
@@ -260,7 +285,7 @@
     .role-card,
     .step-card {
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 6px;
       background: #ffffff;
       padding: 16px;
     }
@@ -307,7 +332,7 @@
     .flow-step {
       position: relative;
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 6px;
       background: #ffffff;
       padding: 14px;
       min-height: 126px;
@@ -407,7 +432,7 @@
 
     .path-item {
       border: 1px solid var(--soft-line);
-      border-radius: 8px;
+      border-radius: 6px;
       padding: 12px;
       background: #fbfcfe;
     }
@@ -466,11 +491,16 @@
 
     @media (max-width: 920px) {
       .hero-grid,
+      .doc-shell,
       .section-head,
       .grid.two,
       .grid.three,
       .comparison {
         grid-template-columns: 1fr;
+      }
+
+      .top-nav {
+        position: static;
       }
 
       .flow {
@@ -510,13 +540,13 @@
   <header class="hero">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow">DevBuddy Skill Manual</p>
-        <h1>คู่มือ DevBuddy สำหรับคนที่อยากเข้าใจ skill และ sub agent</h1>
+        <p class="eyebrow">DevBuddy Skill Wiki</p>
+        <h1>DevBuddy Skill Reference</h1>
         <p class="hero-summary">
           DevBuddy คือ skill ที่เปลี่ยน AI coding assistant ให้ทำงานแบบ senior developer:
           เข้าใจ business และ architecture ก่อน, วางแผนก่อนแก้, เปลี่ยนให้น้อยแต่ดี,
-          review งานจริงจัง, และเก็บความรู้ที่ควรจำไว้ใช้ต่อในงานถัดไป คู่มือนี้อธิบาย
-          ภาพรวม วิธีทำงาน โครงสร้างไฟล์ การใช้งาน และบทบาทของ sub agent สำหรับคนที่เพิ่งเข้ามาดู repo
+          review งานจริงจัง, และเก็บความรู้ที่ควรจำไว้ใช้ต่อในงานถัดไป หน้านี้เป็น wiki/reference
+          สำหรับดูว่า skill ทำอะไร, ใช้งานอย่างไร, route sub agent อย่างไร, และต้องดูแลไฟล์ไหนเมื่อเนื้อหา skill เปลี่ยน
         </p>
       </div>
       <aside class="hero-panel" aria-label="ข้อมูลสำคัญ">
@@ -546,13 +576,22 @@
             <dt>Sub agent roles</dt>
             <dd>analyze, ba, sa, frontend, backend, qa, tester, docs, data, operations</dd>
           </div>
+          <div>
+            <dt>Content source</dt>
+            <dd><code>skill/SKILL.md</code> + <code>skill/agents/shared/</code></dd>
+          </div>
+          <div>
+            <dt>Document style</dt>
+            <dd>wiki / reference page</dd>
+          </div>
         </dl>
       </aside>
     </div>
   </header>
 
-  <nav class="top-nav" aria-label="สารบัญ">
-    <div class="wrap">
+  <div class="doc-shell wrap">
+    <nav class="top-nav" aria-label="สารบัญ">
+      <h2>สารบัญ</h2>
       <a href="#what">คืออะไร</a>
       <a href="#essentials">ข้อมูลจำเป็น</a>
       <a href="#use-cases">ใช้ทำอะไร</a>
@@ -563,10 +602,9 @@
       <a href="#usage">วิธีใช้งาน</a>
       <a href="#maintenance">Maintenance</a>
       <a href="#checklist">Checklist</a>
-    </div>
-  </nav>
+    </nav>
 
-  <main class="wrap">
+    <main class="doc-content">
     <section id="what" class="band">
       <div class="section-head">
         <div>
@@ -590,6 +628,13 @@
           <p>
             ก่อนแก้โค้ด DevBuddy ต้องเข้าใจ goal, target user, workflow ที่กระทบ,
             domain rules, edge cases, และ expected behavior
+          </p>
+        </article>
+        <article class="info-card">
+          <h3>BA and SA ready</h3>
+          <p>
+            Skill ปัจจุบันแยก business analysis และ system analysis เป็น role ชัดเจน:
+            <code>ba</code> จับ requirement และ value, <code>sa</code> จับ architecture และ contracts
           </p>
         </article>
         <article class="info-card">
@@ -668,6 +713,13 @@
             ก่อนหรือระหว่างลงมือ ไม่ใช่แก้โค้ดทันทีโดยไม่อ่านบริบท
           </p>
         </article>
+        <article class="info-card">
+          <h3>Command and test rules</h3>
+          <p>
+            ถ้า command ที่ตั้งใจใช้ไม่มีในเครื่อง agent ต้องถามก่อนเปลี่ยน tool หรือ package manager
+            และถ้าต้องสร้าง test ใหม่ ให้ยึด layout เดิม หรือใช้ <code>tests/</code> ระดับบนเมื่อไม่มี convention ชัดเจน
+          </p>
+        </article>
       </div>
 
       <h3>คำสั้น ๆ ที่ใช้เรียก skill</h3>
@@ -692,6 +744,18 @@
             <td><code>ใช้ DevBuddy frontend profile ตรวจ responsive และ accessibility risk</code></td>
           </tr>
           <tr>
+            <td>อยาก refine requirement</td>
+            <td><code>ใช้ DevBuddy ba profile หา stakeholders, workflow, domain rules และ acceptance criteria</code></td>
+          </tr>
+          <tr>
+            <td>อยากออกแบบ system behavior</td>
+            <td><code>ใช้ DevBuddy sa profile map modules, APIs, data flow, risks และ alternatives</code></td>
+          </tr>
+          <tr>
+            <td>อยากออกแบบหรือรัน test</td>
+            <td><code>ใช้ DevBuddy tester profile ออก test cases, test data และ evidence summary</code></td>
+          </tr>
+          <tr>
             <td>อยากเข้าใจ codebase ก่อนทำ</td>
             <td><code>ใช้ DevBuddy analyze profile map affected files, risks และ missing tests</code></td>
           </tr>
@@ -709,12 +773,28 @@
           </p>
         </div>
         <div class="success-note">
-          เหมาะกับงานที่ต้องมี planning, review, architectural judgment,
+          เหมาะกับงานที่ต้องมี BA/SA thinking, planning, review, testing discipline,
           Angular/.NET guidance, หรือการประสาน sub agent หลายบทบาท
         </div>
       </div>
 
       <div class="grid two">
+        <article class="info-card">
+          <h3>งาน business analysis</h3>
+          <ul>
+            <li>สรุป business problem, target users, stakeholders และ intended value</li>
+            <li>ทำ requirement discovery, acceptance criteria, out-of-scope และ material questions</li>
+            <li>ระบุ domain rules, workflow impact, priority และ readiness ก่อน implementation</li>
+          </ul>
+        </article>
+        <article class="info-card">
+          <h3>งาน system analysis</h3>
+          <ul>
+            <li>แปลง requirement เป็น system behavior, module boundaries และ API/integration contracts</li>
+            <li>ดู data flow, runtime behavior, non-functional requirements และ architecture risks</li>
+            <li>เสนอ alternatives, compatibility notes, validation points หรือ ADR/memory updates</li>
+          </ul>
+        </article>
         <article class="info-card">
           <h3>งานวิเคราะห์และวางแผน</h3>
           <ul>
@@ -732,11 +812,11 @@
           </ul>
         </article>
         <article class="info-card">
-          <h3>งาน review และ QA</h3>
+          <h3>งาน review, QA และ testing</h3>
           <ul>
             <li>ตรวจ bug, regression, missing tests และ acceptance gaps</li>
-            <li>ให้ findings ก่อน summary เมื่อเป็น code review</li>
-            <li>เสนอ verification strategy ตามความเสี่ยงของ change</li>
+            <li>ให้ findings ก่อน summary เมื่อเป็น code review หรือ QA review</li>
+            <li>ออกแบบ test cases, test data, defect reproduction steps และ evidence summary</li>
           </ul>
         </article>
         <article class="info-card">
@@ -1018,7 +1098,70 @@
         </article>
       </div>
 
-      <h3>Role profiles</h3>
+      <h3>Role routing reference</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>ใช้เมื่อ</th>
+            <th>Source spec</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>analyze</code></td>
+            <td>ต้องการ read-only discovery, affected-area mapping, risk discovery หรือ implementation planning</td>
+            <td><code>skill/agents/shared/analyze.md</code></td>
+          </tr>
+          <tr>
+            <td><code>ba</code></td>
+            <td>ต้องการ requirement, stakeholders, workflows, domain rules, acceptance criteria, priority หรือ business readiness</td>
+            <td><code>skill/agents/shared/ba.md</code></td>
+          </tr>
+          <tr>
+            <td><code>sa</code></td>
+            <td>ต้องการ architecture boundaries, module responsibilities, API/integration contracts, data flow หรือ NFR risks</td>
+            <td><code>skill/agents/shared/sa.md</code></td>
+          </tr>
+          <tr>
+            <td><code>frontend</code></td>
+            <td>งาน UI, accessibility, responsive behavior, routing, state, forms, frontend tests หรือ frontend stack guidance</td>
+            <td><code>skill/agents/shared/frontend.md</code></td>
+          </tr>
+          <tr>
+            <td><code>backend</code></td>
+            <td>งาน APIs, runtime behavior, persistence, validation, diagnostics, security, performance หรือ backend tests</td>
+            <td><code>skill/agents/shared/backend.md</code></td>
+          </tr>
+          <tr>
+            <td><code>qa</code></td>
+            <td>ต้องการ post-change review, regression risk, missing tests, acceptance checks หรือ verification strategy</td>
+            <td><code>skill/agents/shared/qa.md</code></td>
+          </tr>
+          <tr>
+            <td><code>tester</code></td>
+            <td>ต้องการ test cases, test data, manual/automated execution, defect reproduction หรือ evidence summary</td>
+            <td><code>skill/agents/shared/tester.md</code></td>
+          </tr>
+          <tr>
+            <td><code>docs</code></td>
+            <td>งาน README, usage guide, migration notes, changelog, skill docs, adapter docs หรือ docs consistency</td>
+            <td><code>skill/agents/shared/docs.md</code></td>
+          </tr>
+          <tr>
+            <td><code>data</code></td>
+            <td>งาน schema, migrations, query behavior, data ownership, compatibility, integrity หรือ rollback risk</td>
+            <td><code>skill/agents/shared/data.md</code></td>
+          </tr>
+          <tr>
+            <td><code>operations</code></td>
+            <td>ใช้เฉพาะเมื่อผู้ใช้ระบุ operations, DevOps, CI/CD, Docker, release, deployment, hosting หรือ runtime intent</td>
+            <td><code>skill/agents/shared/operations.md</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Role profile summary</h3>
       <div class="grid three">
         <article class="role-card">
           <span class="role-key">analyze</span>
@@ -1259,6 +1402,18 @@
       <h3>Prompt examples</h3>
       <div class="grid two">
         <article class="step-card">
+          <h3>งาน BA</h3>
+          <pre><code>ใช้ DevBuddy ba profile refine requirement นี้
+สรุป target users, affected workflow, domain rules,
+acceptance criteria, assumptions และ open questions</code></pre>
+        </article>
+        <article class="step-card">
+          <h3>งาน SA</h3>
+          <pre><code>ใช้ DevBuddy sa profile วิเคราะห์ architecture impact
+map module boundaries, API contracts, data flow,
+non-functional risks, alternatives และ validation points</code></pre>
+        </article>
+        <article class="step-card">
           <h3>วิเคราะห์ก่อนแก้</h3>
           <pre><code>ใช้ DevBuddy วิเคราะห์ feature login ก่อนแก้โค้ด
 ขอ current behavior, affected files, risks, missing tests,
@@ -1281,6 +1436,12 @@ security concern และ tests ที่ควรเพิ่ม</code></pre>
           <pre><code>review change นี้แบบ DevBuddy
 ให้ findings ก่อน summary, ระบุ file/line references,
 test gaps, regression risks และ recommended verification</code></pre>
+        </article>
+        <article class="step-card">
+          <h3>งาน tester</h3>
+          <pre><code>ใช้ DevBuddy tester profile ออก test cases สำหรับ checkout flow
+ระบุ preconditions, test data, expected results,
+regression cases และ evidence summary ที่ควรเก็บ</code></pre>
         </article>
         <article class="step-card">
           <h3>งาน documentation</h3>
@@ -1405,7 +1566,8 @@ prepare-zips.bat</code></pre>
         <li>final answer รวมผลจาก sub agent เป็นคำตอบเดียวที่ actionable</li>
       </ul>
     </section>
-  </main>
+    </main>
+  </div>
 
   <footer>
     <div class="wrap">

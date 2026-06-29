@@ -43,6 +43,11 @@ Before implementation, identify:
 
 Ask when business rules materially affect the task and cannot be discovered from the relevant code, docs, tests, or existing memory loaded for that task.
 
+## Command and Test Conventions
+
+- If an intended command is unavailable on the machine, stop and ask before switching to an alternative tool or package manager. For example, if `npm` is not found, ask whether to use an available alternative such as `bun`, `yarn`, or `pnpm`.
+- When creating new tests, prefer a dedicated top-level `tests/` folder, organized clearly like project documentation folders. Follow an established repository test layout when one already exists and is clearly intentional.
+
 ## Tech Stack Delegation
 
 For stack-specific tasks, keep this skill responsible for senior-engineering workflow: business analysis, architecture review, planning, implementation discipline, review, and memory updates.
