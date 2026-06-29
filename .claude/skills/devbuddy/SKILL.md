@@ -1,6 +1,6 @@
 ---
 name: devbuddy
-description: DevBuddy senior developer, tech lead, and software architect workflow for coding AI agents, with progressive Angular and .NET project guidance. Use when an AI coding assistant must understand business intent and architecture before implementation, maintain project memory, create an approved plan, make minimal maintainable changes, review work, and record lessons across coding tasks. Also use for Angular architecture, new app setup, components, services, signals, forms, dependency injection, routing, SSR, accessibility, styling, testing, CLI tooling, and Angular migrations. Also use for .NET, C#, ASP.NET Core, Web APIs, EF Core, MSBuild, NuGet, dotnet test, VSTest, Microsoft.Testing.Platform, Blazor, MAUI, diagnostics, performance, and .NET version upgrades.
+description: DevBuddy senior developer, tech lead, and software architect workflow for coding AI agents, with progressive multi-stack project guidance. Use when an AI coding assistant must understand business intent and architecture before implementation, maintain project memory, create an approved plan, make minimal maintainable changes, review work, and record lessons across coding tasks. Also use for frontend stacks such as Angular, React, Next.js, Vue, Nuxt, Svelte, jQuery, and Blazor UI. Also use for backend stacks such as .NET, C#, ASP.NET Core, Web APIs, EF Core, MSBuild, NuGet, Java, Go, Rust, Node.js, Python, diagnostics, performance, tests, and version upgrades.
 ---
 
 # DevBuddy
@@ -43,28 +43,29 @@ Before implementation, identify:
 
 Ask when business rules materially affect the task and cannot be discovered from the relevant code, docs, tests, or existing memory loaded for that task.
 
-## Specialized Skill Delegation
+## Tech Stack Delegation
 
-For Angular or .NET tasks, keep this skill responsible for senior-engineering workflow: business analysis, architecture review, planning, implementation discipline, review, and memory updates.
+For stack-specific tasks, keep this skill responsible for senior-engineering workflow: business analysis, architecture review, planning, implementation discipline, review, and memory updates.
 
-Before loading bundled Angular or .NET references, check whether the current session exposes a more specific installed skill that directly matches the task. If it does, use that specialized skill for framework-specific procedure and details, then return to this skill for planning, trade-offs, review, and learning.
+Before loading bundled references, check whether the current session exposes a more specific installed skill that directly matches the detected stack and task. If it does, use that specialized skill for framework-specific procedure and details, then return to this skill for planning, trade-offs, review, and learning.
 
-Use bundled references when no matching specialized skill is available or when the specialized skill does not cover the requested topic.
+Use bundled references when no matching specialized skill is available or when the specialized skill does not cover the requested topic. Use repo inspection and project-local patterns as the fallback for stacks without bundled deep references.
 
-When deciding whether to install or delegate to a specialized Angular or .NET skill, read `references/optional-specialized-skills.md`.
+When deciding which role should handle a stack, read `references/tech-stack-routing.md`. When deciding whether to install or delegate to a specialized Angular or .NET skill, read `references/optional-specialized-skills.md`.
 
 Examples:
 
 - Angular components, forms, routing, rendering, migrations, CLI, or testing: prefer an installed Angular-specific skill when available.
 - .NET Web API, EF Core, MSBuild, NuGet, `dotnet test`, upgrades, diagnostics, MAUI, or Blazor: prefer an installed .NET-specific skill when available.
+- React, Next.js, Vue, Nuxt, Svelte, jQuery, Blazor UI, Java, Go, Rust, Node.js, or Python: route through `frontend`, `backend`, or both according to `references/tech-stack-routing.md`.
 
 ## Agent Profiles
 
 DevBuddy can route work through focused role profiles while keeping this file as the orchestrator for business understanding, planning, approval, review, and memory updates.
 
 - `analyze`: read-only project, code, tests, business, and risk analysis before implementation.
-- `frontend`: frontend and Angular work, including UI behavior, accessibility, styling, state, routing, forms, and tests.
-- `backend`: backend and .NET work, including APIs, data models, persistence, runtime behavior, diagnostics, security, performance, and tests.
+- `frontend`: frontend stack work including Angular, React, Next.js UI, Vue, Nuxt UI, Svelte, jQuery, Blazor UI, UI behavior, accessibility, styling, state, routing, forms, and tests.
+- `backend`: backend stack work including .NET, ASP.NET Core, Java, Go, Rust, Node.js, Python, APIs, data models, persistence, runtime behavior, diagnostics, security, performance, and tests.
 - `qa`: post-change quality review, regression risk, missing tests, acceptance checks, and verification strategy.
 - `operations`: explicitly requested operations, DevOps, infrastructure, CI/CD, Docker, release, deployment, hosting, runtime environment, and operational readiness work.
 - `docs`: README files, usage guides, migration notes, changelogs, skill docs, adapter docs, and documentation consistency.
@@ -136,6 +137,7 @@ Read only the relevant files when deeper guidance is needed:
 - `capabilities/understand-runtime.md`
 - `capabilities/understand-angular-project.md`
 - `capabilities/understand-dotnet-project.md`
+- `references/tech-stack-routing.md`
 - `workflows/analyze-workflow.md`
 - `workflows/planning-workflow.md`
 - `workflows/implementation-workflow.md`

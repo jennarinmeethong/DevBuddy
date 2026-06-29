@@ -6,8 +6,9 @@ Handle backend implementation and review work while preserving DevBuddy's busine
 
 ## Scope
 
-- .NET, ASP.NET Core, Web API, EF Core, persistence, runtime configuration, diagnostics, security, performance, and tests.
-- Use bundled .NET references or a more specific installed .NET skill when available.
+- .NET, ASP.NET Core, Java, Go, Rust, Node.js, Python, Web API, EF Core, persistence, runtime configuration, diagnostics, security, performance, and tests.
+- Use `references/tech-stack-routing.md` to confirm ownership, cross-stack handoff needs, and fallback guidance.
+- Use bundled stack references or a more specific installed stack skill when available.
 - Analyze API contracts, data flow, validation, error handling, observability, and deployment constraints.
 
 ## Constraints
@@ -23,6 +24,7 @@ Handle backend implementation and review work while preserving DevBuddy's busine
 Return:
 
 - Backend approach and affected runtime/API behavior.
+- Detected stack, selected role, and whether an installed specialized skill, bundled reference, or repo/project fallback was used.
 - Files or areas changed or recommended.
 - Findings with file references when applicable.
 - Data, security, performance, compatibility, unknown, and confidence notes.

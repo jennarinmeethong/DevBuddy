@@ -17,8 +17,8 @@ Keep DevBuddy's main agent responsible for business understanding, planning, app
 Use a subagent when the task benefits from bounded, focused work:
 
 - Use `analyze` for read-only discovery, affected-area mapping, risk discovery, and implementation planning.
-- Use `frontend` for Angular, UI behavior, accessibility, responsive behavior, visual consistency, routing, state, forms, and frontend tests.
-- Use `backend` for .NET, APIs, data models, persistence, runtime configuration, security, diagnostics, performance, and backend tests.
+- Use `frontend` for Angular, React, Next.js UI, Vue, Nuxt UI, Svelte, jQuery, Blazor UI, UI behavior, accessibility, responsive behavior, visual consistency, routing, state, forms, and frontend tests.
+- Use `backend` for .NET, ASP.NET Core, Java, Go, Rust, Node.js, Python, APIs, data models, persistence, runtime configuration, security, diagnostics, performance, and backend tests.
 - Use `qa` for post-change quality review, regression risk, missing tests, acceptance checks, and verification strategy.
 - Use `docs` for README files, usage guides, migration notes, changelogs, skill docs, adapter docs, and documentation consistency.
 - Use `data` when correctness depends on data shape, migrations, ownership, query behavior, compatibility, or integrity.
@@ -27,6 +27,8 @@ Use a subagent when the task benefits from bounded, focused work:
 Do not select `operations` automatically for generic build failures, test failures, backend configuration, scripts, Dockerfiles, or deployment-adjacent files unless the user's request clearly names an operations intent.
 
 Avoid subagents when the task is narrow, the main agent already has enough context, or the routing overhead would exceed the benefit.
+
+When a task names a stack or when role ownership is ambiguous, read `references/tech-stack-routing.md` and route by affected behavior. Use both `frontend` and `backend` for cross-stack work such as Next.js, Nuxt, SvelteKit, or Blazor when UI behavior and server/runtime behavior both affect correctness.
 
 ## Context Contract
 
@@ -45,6 +47,7 @@ Do not send broad repository context, long logs, or unrelated memory unless it i
 Focused agents should return concise findings:
 
 - Business and technical summary.
+- Detected stack, selected role, and whether an installed specialized skill, bundled reference, or repo/project fallback was used.
 - Files or areas inspected.
 - Findings with file references when applicable.
 - Risks, unknowns, and confidence.
@@ -54,8 +57,9 @@ Do not paste full files or long command output. Summarize evidence and cite the 
 
 ## Skill Mapping
 
-- Use DevBuddy for senior-engineering workflow, architecture, planning, implementation discipline, review, memory, Angular, and .NET.
-- Use more specific installed Angular or .NET skills when available, then return to DevBuddy for trade-offs, review, and learning.
+- Use DevBuddy for senior-engineering workflow, architecture, planning, implementation discipline, review, memory, and multi-stack routing.
+- Use `references/tech-stack-routing.md` to select `frontend`, `backend`, or both for Angular, React, Next.js, Vue, Nuxt, Svelte, jQuery, Blazor, .NET, Java, Go, Rust, Node.js, Python, and similar stacks.
+- Use more specific installed stack skills when available, then return to DevBuddy for trade-offs, review, and learning.
 - Use document, PDF, spreadsheet, image, browser, plugin, or skill-creation skills only when the task matches those domains.
 
 ## Token Policy

@@ -3,91 +3,343 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DevBuddy Usage Guide</title>
+  <title>DevBuddy Skill Manual</title>
   <style>
     :root {
       color-scheme: light;
-      --bg: #f7f8fb;
-      --panel: #ffffff;
-      --text: #1f2937;
-      --muted: #5b6472;
-      --line: #d9dee8;
-      --accent: #0f766e;
-      --accent-strong: #115e59;
-      --code: #eef2f7;
-      --warn: #8a5a00;
-      --warn-bg: #fff7df;
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --ink: #1d2733;
+      --muted: #5d6878;
+      --line: #d9dee7;
+      --soft-line: #e9edf4;
+      --navy: #17202f;
+      --navy-2: #243045;
+      --teal: #0f766e;
+      --teal-soft: #e6f7f4;
+      --blue: #2563eb;
+      --blue-soft: #eaf1ff;
+      --amber: #b45309;
+      --amber-soft: #fff7e8;
+      --green: #15803d;
+      --green-soft: #eaf7ee;
+      --code-bg: #eef2f7;
+      --shadow: 0 18px 45px rgba(31, 41, 55, 0.08);
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       background: var(--bg);
-      color: var(--text);
+      color: var(--ink);
       font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
-    header {
-      background: #17202f;
-      color: #ffffff;
-      padding: 48px 24px 40px;
+    a {
+      color: var(--teal);
+      text-decoration: none;
     }
 
-    header .wrap,
-    main {
-      width: min(1080px, calc(100% - 40px));
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .wrap {
+      width: min(1160px, calc(100% - 40px));
       margin: 0 auto;
     }
 
-    h1 {
-      margin: 0 0 12px;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      line-height: 1.15;
+    .hero {
+      background: var(--navy);
+      color: #ffffff;
+      padding: 48px 0 34px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+      gap: 28px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: #9ad7d0;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
       letter-spacing: 0;
     }
 
-    header p {
-      max-width: 760px;
+    h1 {
       margin: 0;
-      color: #cbd5e1;
+      max-width: 780px;
+      font-size: clamp(2.1rem, 5vw, 4.2rem);
+      line-height: 1.12;
+    }
+
+    .hero-summary {
+      max-width: 820px;
+      margin: 18px 0 0;
+      color: #d8dee8;
       font-size: 1.08rem;
+    }
+
+    .hero-panel {
+      background: var(--navy-2);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .hero-panel h2 {
+      margin: 0 0 12px;
+      color: #ffffff;
+      font-size: 1rem;
+    }
+
+    .hero-panel dl {
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .hero-panel dt {
+      color: #9fb1c8;
+      font-size: 0.82rem;
+    }
+
+    .hero-panel dd {
+      margin: 2px 0 0;
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+      overflow-x: hidden;
+    }
+
+    .top-nav .wrap {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .top-nav a {
+      flex: 0 0 auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 7px 10px;
+      color: var(--ink);
+      background: #ffffff;
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+
+    .top-nav a:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+      text-decoration: none;
     }
 
     main {
-      padding: 28px 0 56px;
+      padding: 26px 0 56px;
     }
 
     section {
-      background: var(--panel);
+      margin: 22px 0;
+      scroll-margin-top: 78px;
+    }
+
+    .band {
+      background: var(--surface);
       border: 1px solid var(--line);
       border-radius: 8px;
-      padding: 24px;
-      margin: 18px 0;
+      box-shadow: var(--shadow);
+      padding: 26px;
+    }
+
+    .band.compact {
+      box-shadow: none;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(240px, 0.28fr);
+      gap: 22px;
+      align-items: start;
+      margin-bottom: 18px;
+    }
+
+    .hero-grid > *,
+    .section-head > *,
+    .grid > *,
+    .flow > *,
+    .comparison > * {
+      min-width: 0;
     }
 
     h2 {
-      margin: 0 0 14px;
-      font-size: 1.45rem;
-      line-height: 1.3;
+      margin: 0;
+      font-size: clamp(1.45rem, 2.3vw, 2rem);
+      line-height: 1.28;
     }
 
     h3 {
-      margin: 22px 0 8px;
+      margin: 20px 0 8px;
       font-size: 1.08rem;
+      line-height: 1.35;
     }
 
     p {
-      margin: 10px 0;
+      margin: 9px 0;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .aside-note {
+      border-left: 4px solid var(--teal);
+      background: var(--teal-soft);
+      padding: 12px 14px;
+      color: #194540;
+    }
+
+    .warning-note {
+      border-left: 4px solid var(--amber);
+      background: var(--amber-soft);
+      padding: 12px 14px;
+      color: #62350b;
+    }
+
+    .success-note {
+      border-left: 4px solid var(--green);
+      background: var(--green-soft);
+      padding: 12px 14px;
+      color: #164a27;
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .info-card,
+    .role-card,
+    .step-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      padding: 16px;
+    }
+
+    .info-card h3,
+    .role-card h3,
+    .step-card h3 {
+      margin-top: 0;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fbfcfe;
+      padding: 3px 10px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .tag.strong {
+      border-color: #b7dad5;
+      background: var(--teal-soft);
+      color: #14554f;
+      font-weight: 700;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .flow-step {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      padding: 14px;
+      min-height: 126px;
+    }
+
+    .flow-step strong {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 0.9rem;
+    }
+
+    .flow-step h3 {
+      margin: 12px 0 6px;
+      font-size: 1rem;
+    }
+
+    .flow-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
     }
 
     ul,
     ol {
-      padding-left: 24px;
       margin: 10px 0;
+      padding-left: 24px;
     }
 
     li {
@@ -95,21 +347,24 @@
     }
 
     code {
-      background: var(--code);
+      background: var(--code-bg);
       border: 1px solid #d8e0ec;
       border-radius: 5px;
       padding: 2px 6px;
       font-family: Consolas, "Courier New", monospace;
       font-size: 0.95em;
+      overflow-wrap: anywhere;
     }
 
     pre {
+      margin: 12px 0 0;
+      max-width: 100%;
       overflow-x: auto;
       background: #111827;
       color: #e5e7eb;
       border-radius: 8px;
       padding: 16px;
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
     pre code {
@@ -130,280 +385,787 @@
     td {
       border: 1px solid var(--line);
       padding: 10px 12px;
-      vertical-align: top;
       text-align: left;
+      vertical-align: top;
+      overflow-wrap: anywhere;
     }
 
     th {
       background: #eef3f8;
+      color: #263342;
     }
 
-    .note {
-      border-left: 4px solid var(--accent);
-      background: #e9fbf8;
-      padding: 12px 14px;
-      margin: 14px 0;
-    }
-
-    .warning {
-      border-left: 4px solid var(--warn);
-      background: var(--warn-bg);
-      padding: 12px 14px;
-      margin: 14px 0;
-    }
-
-    .toc {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 10px;
-      padding-left: 0;
-      list-style: none;
-    }
-
-    .toc a {
-      display: block;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 10px 12px;
-      color: var(--accent-strong);
-      text-decoration: none;
+    tbody tr:nth-child(even) td {
       background: #fbfcfe;
     }
 
-    .toc a:hover {
-      border-color: var(--accent);
+    .path-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .path-item {
+      border: 1px solid var(--soft-line);
+      border-radius: 8px;
+      padding: 12px;
+      background: #fbfcfe;
+    }
+
+    .path-item code {
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    .role-card {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .role-card p {
+      color: var(--muted);
+    }
+
+    .role-card .role-key {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 6px;
+      background: var(--navy);
+      color: #ffffff;
+      padding: 3px 8px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.85rem;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .comparison h3 {
+      margin-top: 0;
+    }
+
+    .checklist {
+      columns: 2;
+      column-gap: 34px;
+    }
+
+    .checklist li {
+      break-inside: avoid;
     }
 
     footer {
-      width: min(1080px, calc(100% - 40px));
-      margin: 0 auto 40px;
+      border-top: 1px solid var(--line);
+      background: #ffffff;
       color: var(--muted);
+      padding: 22px 0 28px;
       font-size: 0.94rem;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .section-head,
+      .grid.two,
+      .grid.three,
+      .comparison {
+        grid-template-columns: 1fr;
+      }
+
+      .flow {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .checklist {
+        columns: 1;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .wrap {
+        width: min(100% - 28px, 1160px);
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+
+      .band {
+        padding: 18px;
+      }
+
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        table-layout: fixed;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <h1>DevBuddy Usage Guide</h1>
-      <p>คู่มือใช้งาน DevBuddy สำหรับ workflow แบบ senior developer, Claude Code agent orchestration, skill routing, และการประหยัด token</p>
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">DevBuddy Skill Manual</p>
+        <h1>คู่มือ DevBuddy สำหรับคนที่อยากเข้าใจ skill และ sub agent</h1>
+        <p class="hero-summary">
+          DevBuddy คือ skill ที่เปลี่ยน AI coding assistant ให้ทำงานแบบ senior developer:
+          เข้าใจ business และ architecture ก่อน, วางแผนก่อนแก้, เปลี่ยนให้น้อยแต่ดี,
+          review งานจริงจัง, และเก็บความรู้ที่ควรจำไว้ใช้ต่อในงานถัดไป
+        </p>
+      </div>
+      <aside class="hero-panel" aria-label="ข้อมูลสำคัญ">
+        <h2>ข้อมูลเร็ว</h2>
+        <dl>
+          <div>
+            <dt>Skill name</dt>
+            <dd>devbuddy</dd>
+          </div>
+          <div>
+            <dt>Canonical entrypoint</dt>
+            <dd><code>skill/SKILL.md</code></dd>
+          </div>
+          <div>
+            <dt>Claude Code command</dt>
+            <dd><code>/devbuddy</code></dd>
+          </div>
+          <div>
+            <dt>Sub agent roles</dt>
+            <dd>analyze, frontend, backend, qa, docs, data, operations</dd>
+          </div>
+        </dl>
+      </aside>
     </div>
   </header>
 
-  <main>
-    <section id="overview">
-      <h2>ภาพรวม</h2>
-      <p>DevBuddy คือ skill/workflow ที่ทำให้ AI coding assistant ทำงานเหมือน senior developer: เข้าใจ business ก่อน, อ่าน architecture ก่อน, วางแผนก่อนแก้, ทำ change ให้น้อยที่สุด, review งาน, และบันทึกความรู้ที่ควรจำไว้ใน memory files</p>
-      <div class="note">
-        หลักสำคัญคือ <strong>main agent เป็น orchestrator</strong> ส่วน agent ย่อยใช้เฉพาะงานที่ช่วยลดความเสี่ยงหรือลด context load ได้จริง
+  <nav class="top-nav" aria-label="สารบัญ">
+    <div class="wrap">
+      <a href="#what">คืออะไร</a>
+      <a href="#use-cases">ใช้ทำอะไร</a>
+      <a href="#how-it-works">ทำงานอย่างไร</a>
+      <a href="#structure">โครงสร้างไฟล์</a>
+      <a href="#subagents">Sub Agent</a>
+      <a href="#memory">Memory</a>
+      <a href="#usage">วิธีใช้งาน</a>
+      <a href="#maintenance">Maintenance</a>
+      <a href="#checklist">Checklist</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="what" class="band">
+      <div class="section-head">
+        <div>
+          <h2>DevBuddy คืออะไร</h2>
+          <p class="lead">
+            DevBuddy เป็น workflow skill สำหรับ AI coding assistant ที่เน้นการตัดสินใจเชิงวิศวกรรม
+            ไม่ใช่แค่สั่งให้ AI เขียนโค้ดเร็วขึ้น แต่บังคับให้ AI เข้าใจปัญหา บริบท ความเสี่ยง
+            และวิธี verify ก่อนลงมือ
+          </p>
+        </div>
+        <div class="aside-note">
+          แก่นของ skill นี้คือ <strong>main agent เป็น orchestrator</strong>:
+          อ่านโจทย์, เลือกข้อมูลที่ต้องใช้, route งานให้ sub agent เมื่อเหมาะสม,
+          รวมผล, ตัดสินใจ, และสื่อสารกับผู้ใช้
+        </div>
+      </div>
+
+      <div class="grid three">
+        <article class="info-card">
+          <h3>Business before code</h3>
+          <p>
+            ก่อนแก้โค้ด DevBuddy ต้องเข้าใจ goal, target user, workflow ที่กระทบ,
+            domain rules, edge cases, และ expected behavior
+          </p>
+        </article>
+        <article class="info-card">
+          <h3>Progressive context</h3>
+          <p>
+            โหลดเฉพาะข้อมูลที่จำเป็น: เริ่มจาก <code>SKILL.md</code>,
+            memory เมื่อเกี่ยวข้อง, แล้วค่อยอ่าน source, tests, ADR หรือ references
+          </p>
+        </article>
+        <article class="info-card">
+          <h3>Small maintainable changes</h3>
+          <p>
+            ลำดับคิดหลักคือ Delete, Simplify, Reuse, Refactor, Build
+            และเพิ่ม abstraction เฉพาะเมื่อมีเหตุผลจริง
+          </p>
+        </article>
       </div>
     </section>
 
-    <section id="contents">
-      <h2>สารบัญ</h2>
-      <ul class="toc">
-        <li><a href="#workflow">Workflow หลัก</a></li>
-        <li><a href="#roles">บทบาท Agent</a></li>
-        <li><a href="#routing">การเรียก Agent ย่อย</a></li>
-        <li><a href="#skills">Skill Mapping</a></li>
-        <li><a href="#memory">Memory Files</a></li>
-        <li><a href="#claude">Claude Code</a></li>
-        <li><a href="#examples">ตัวอย่าง Prompt</a></li>
-        <li><a href="#checklist">Checklist</a></li>
-      </ul>
+    <section id="use-cases" class="band compact">
+      <div class="section-head">
+        <div>
+          <h2>ใช้ทำอะไรได้บ้าง</h2>
+          <p class="lead">
+            ใช้ DevBuddy เมื่อต้องการให้ AI ทำงานกับ codebase อย่างระมัดระวัง มีเหตุผล
+            และทิ้งความรู้ที่ใช้ซ้ำได้ ไม่ใช่แก้เฉพาะหน้าแล้วหายไป
+          </p>
+        </div>
+        <div class="success-note">
+          เหมาะกับงานที่ต้องมี planning, review, architectural judgment,
+          Angular/.NET guidance, หรือการประสาน sub agent หลายบทบาท
+        </div>
+      </div>
+
+      <div class="grid two">
+        <article class="info-card">
+          <h3>งานวิเคราะห์และวางแผน</h3>
+          <ul>
+            <li>อ่าน feature หรือ module เพื่อหา current behavior</li>
+            <li>ระบุ affected files, risks, unknowns, และ missing tests</li>
+            <li>ทำ implementation plan ก่อนแก้จริง</li>
+          </ul>
+        </article>
+        <article class="info-card">
+          <h3>งาน implementation</h3>
+          <ul>
+            <li>แก้โค้ดแบบ scope เล็กและ maintainable</li>
+            <li>คุม business rules, architecture, security, performance และ testability</li>
+            <li>เลือก Angular หรือ .NET reference เฉพาะเรื่องที่เกี่ยวข้อง</li>
+          </ul>
+        </article>
+        <article class="info-card">
+          <h3>งาน review และ QA</h3>
+          <ul>
+            <li>ตรวจ bug, regression, missing tests และ acceptance gaps</li>
+            <li>ให้ findings ก่อน summary เมื่อเป็น code review</li>
+            <li>เสนอ verification strategy ตามความเสี่ยงของ change</li>
+          </ul>
+        </article>
+        <article class="info-card">
+          <h3>งาน documentation และ learning</h3>
+          <ul>
+            <li>อัปเดต README, usage guide, migration notes, skill docs และ adapter docs</li>
+            <li>บันทึก durable knowledge ใน memory files เมื่อควรจำข้ามงาน</li>
+            <li>รักษาความสอดคล้องระหว่าง shared skill และ Claude Code adapters</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="warning-note">
+        DevBuddy ไม่ได้ทำให้ zip package ถูก auto-load จาก repo เอง ถ้าจะใช้ใน Claude Code
+        ต้องมี skill อยู่ที่ <code>&lt;project&gt;/.claude/skills/devbuddy/SKILL.md</code>
+        หรือ <code>~/.claude/skills/devbuddy/SKILL.md</code>
+      </div>
     </section>
 
-    <section id="workflow">
-      <h2>Workflow หลัก</h2>
-      <ol>
-        <li>รับคำสั่งจากผู้ใช้</li>
-        <li>อ่าน <code>SKILL.md</code></li>
-        <li>อ่าน memory ตามลำดับ: <code>Context.md</code>, <code>BusinessContext.md</code>, <code>DecisionLog.md</code>, <code>KnowledgeBase.md</code></li>
-        <li>อ่าน ADR หรือเอกสารที่เกี่ยวข้องถ้ามี</li>
-        <li>สำรวจ source code และ tests เฉพาะส่วนที่เกี่ยวข้อง</li>
-        <li>ถามเฉพาะคำถามที่มีผลต่อความถูกต้องจริง ๆ</li>
-        <li>วางแผนก่อน implementation เมื่อเป็นงานแก้โค้ด</li>
-        <li>ทำ change ที่เล็กและ maintainable ที่สุด</li>
-        <li>review correctness, business alignment, simplicity, security, performance, และ testability</li>
-        <li>อัปเดต memory เมื่อมี durable knowledge ใหม่</li>
-      </ol>
-    </section>
+    <section id="how-it-works" class="band">
+      <div class="section-head">
+        <div>
+          <h2>DevBuddy ทำงานอย่างไร</h2>
+          <p class="lead">
+            Skill นี้ออกแบบแบบ progressive disclosure: ให้ AI เริ่มจาก instruction หลักก่อน
+            แล้วค่อยดึง context เพิ่มเฉพาะเมื่อจำเป็น เพื่อประหยัด token และลด noise
+          </p>
+        </div>
+        <div class="aside-note">
+          สำหรับคำถามทั่วไปเกี่ยวกับ skill ให้ inspect เฉพาะ instruction หรือ resource ที่เกี่ยวข้อง
+          ไม่ต้องอ่าน project memory, ADR, source code หรือ tests โดยไม่จำเป็น
+        </div>
+      </div>
 
-    <section id="roles">
-      <h2>บทบาท Agent</h2>
+      <div class="flow" aria-label="ลำดับการทำงาน">
+        <article class="flow-step">
+          <strong>1</strong>
+          <h3>Classify</h3>
+          <p>อ่านคำขอและแยกประเภทงาน: question, analysis, planning, implementation, review, debugging หรือ learning</p>
+        </article>
+        <article class="flow-step">
+          <strong>2</strong>
+          <h3>Load Context</h3>
+          <p>อ่าน <code>SKILL.md</code> แล้วโหลด memory, ADR, source, tests หรือ references เฉพาะที่มีผลต่อความถูกต้อง</p>
+        </article>
+        <article class="flow-step">
+          <strong>3</strong>
+          <h3>Plan</h3>
+          <p>สรุป business goal, technical approach, affected files, risks, alternatives, questions และ confidence</p>
+        </article>
+        <article class="flow-step">
+          <strong>4</strong>
+          <h3>Implement</h3>
+          <p>ทำ change ที่เล็กที่สุดซึ่งยัง maintainable และสอดคล้องกับ architecture เดิม</p>
+        </article>
+        <article class="flow-step">
+          <strong>5</strong>
+          <h3>Review</h3>
+          <p>ตรวจ correctness, business alignment, simplicity, security, performance, testability และ regression risk</p>
+        </article>
+        <article class="flow-step">
+          <strong>6</strong>
+          <h3>Verify</h3>
+          <p>รัน test หรือ validation ที่เหมาะกับ blast radius และอธิบาย test ที่ไม่ได้รัน</p>
+        </article>
+        <article class="flow-step">
+          <strong>7</strong>
+          <h3>Learn</h3>
+          <p>ถ้ามี durable knowledge ให้บันทึกลง memory โดย preserve ความรู้เดิมและ mark assumption ให้ชัด</p>
+        </article>
+        <article class="flow-step">
+          <strong>8</strong>
+          <h3>Report</h3>
+          <p>รวมผลจาก main agent และ sub agent เป็นคำตอบสุดท้ายที่ actionable และมี risks/tests ชัดเจน</p>
+        </article>
+      </div>
+
+      <h3>Planning output ที่ DevBuddy คาดหวัง</h3>
       <table>
         <thead>
           <tr>
-            <th>Role</th>
-            <th>หน้าที่</th>
-            <th>ผลลัพธ์ที่ควรส่งกลับ</th>
+            <th>หัวข้อ</th>
+            <th>ต้องตอบอะไร</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><code>Main Agent</code></td>
-            <td>วิเคราะห์คำสั่ง, อ่าน context หลัก, เลือก skill, route งาน, รวมผล, ตัดสินใจ, สื่อสารกับผู้ใช้</td>
-            <td>แผนหรือคำตอบสุดท้ายที่รวม business, technical, risks, tests, และ next steps</td>
+            <td>Business summary</td>
+            <td>ปัญหาของผู้ใช้หรือธุรกิจ และ workflow ที่ได้รับผลกระทบ</td>
           </tr>
           <tr>
-            <td><code>Analyze Agent</code></td>
-            <td>สำรวจ repo/source/tests แบบ read-only, หา affected area, risks, unknowns</td>
-            <td>summary, inspected files, findings, risks, confidence, recommended next steps</td>
+            <td>Technical summary</td>
+            <td>แนวทาง implementation และ expected behavior หลังแก้</td>
           </tr>
           <tr>
-            <td><code>Frontend Agent</code></td>
-            <td>งาน Angular/UI, accessibility, responsive behavior, routing, state, forms, frontend tests</td>
-            <td>UI behavior, affected files, accessibility/visual risks, verification notes</td>
+            <td>Affected files</td>
+            <td>ไฟล์ โฟลเดอร์ module หรือพื้นที่ที่คาดว่าจะเปลี่ยนหรืออ่าน</td>
           </tr>
           <tr>
-            <td><code>Backend Agent</code></td>
-            <td>งาน .NET/API/data/persistence/security/runtime/performance/backend tests</td>
-            <td>API/runtime behavior, affected files, data/security/performance risks, verification notes</td>
+            <td>Risks</td>
+            <td>LOW, MEDIUM, HIGH หรือ CRITICAL พร้อมเหตุผลสั้น ๆ</td>
+          </tr>
+          <tr>
+            <td>Alternatives</td>
+            <td>อย่างน้อยแนวทางที่เลือกและทางเลือกที่ไม่เลือก</td>
+          </tr>
+          <tr>
+            <td>Open questions</td>
+            <td>เฉพาะคำถามที่กระทบ correctness จริง</td>
+          </tr>
+          <tr>
+            <td>Confidence</td>
+            <td>LOW, MEDIUM หรือ HIGH พร้อมเหตุผล</td>
           </tr>
         </tbody>
       </table>
     </section>
 
-    <section id="routing">
-      <h2>การเรียก Agent ย่อย</h2>
-      <h3>ควรเรียกเมื่อ</h3>
-      <ul>
-        <li>งานต้องสำรวจหลาย module หรือหลาย concern</li>
-        <li>ต้องการ review ความเสี่ยงหรือ regression แยกอีกมุม</li>
-        <li>งาน frontend/backend มีรายละเอียดเฉพาะทางชัดเจน</li>
-        <li>การแบ่งงานช่วยลด context ที่ main agent ต้องโหลดเอง</li>
-      </ul>
+    <section id="structure" class="band compact">
+      <div class="section-head">
+        <div>
+          <h2>โครงสร้างไฟล์ที่ควรรู้</h2>
+          <p class="lead">
+            DevBuddy ถูกดูแลเป็น skill แนวคิดเดียว แต่มี source หลัก, project-local Claude skill,
+            Claude subagent adapters และ package layout สำหรับ distribution
+          </p>
+        </div>
+        <div class="aside-note">
+          กติกาหลักคือแก้ shared behavior ใน <code>skill/</code> ก่อน
+          แล้วค่อย sync adapter หรือ package copy ที่เกี่ยวข้อง
+        </div>
+      </div>
 
-      <h3>ไม่ควรเรียกเมื่อ</h3>
-      <ul>
-        <li>งานเล็กและ main agent มี context พอแล้ว</li>
-        <li>ต้องส่ง context กว้างมากจน overhead สูงกว่าประโยชน์</li>
-        <li>agent หลายตัวจะต้องอ่านไฟล์ชุดเดียวกันซ้ำ ๆ</li>
-      </ul>
-
-      <h3>Context Contract</h3>
-      <p>เมื่อส่งงานให้ agent ย่อย ให้ส่งเฉพาะข้อมูลที่จำเป็น:</p>
-      <ul>
-        <li>เป้าหมายและ success criteria</li>
-        <li>ไฟล์ โฟลเดอร์ symbol หรือ workflow ที่เกี่ยวข้อง</li>
-        <li>ข้อจำกัดว่าแก้ไฟล์ได้หรือไม่</li>
-        <li>รูปแบบ output ที่ต้องการ</li>
-        <li>business rules, assumptions, unknowns ที่รู้แล้ว</li>
-      </ul>
-
-      <div class="warning">
-        หลีกเลี่ยงการส่งทั้ง repo, log ยาว ๆ, หรือ memory ที่ไม่เกี่ยวข้องให้ agent ย่อย เพราะจะเปลือง token และเพิ่ม noise
+      <div class="path-list">
+        <div class="path-item">
+          <code>skill/SKILL.md</code>
+          <p>entrypoint หลักของ DevBuddy และ source of truth สำหรับ workflow, routing, planning, memory และ definition of done</p>
+        </div>
+        <div class="path-item">
+          <code>skill/agents/shared/</code>
+          <p>role specs กลางสำหรับ sub agent: orchestration, analyze, frontend, backend, qa, docs, data และ operations</p>
+        </div>
+        <div class="path-item">
+          <code>.claude/skills/devbuddy/</code>
+          <p>project-local Claude Code skill path ที่ทำให้เรียก <code>/devbuddy</code> ได้จาก repo นี้</p>
+        </div>
+        <div class="path-item">
+          <code>.claude/agents/</code>
+          <p>Claude Code project subagent adapters เช่น <code>devbuddy-analyze</code>, <code>devbuddy-frontend</code>, <code>devbuddy-qa</code></p>
+        </div>
+        <div class="path-item">
+          <code>packages/claude/devbuddy/</code>
+          <p>install-ready package layout สำหรับแจกจ่าย ไม่ใช่ path ที่ Claude Code auto-load โดยตรง</p>
+        </div>
+        <div class="path-item">
+          <code>prepare-zips.sh</code> และ <code>prepare-zips.bat</code>
+          <p>script สำหรับ rebuild distribution archive จาก repository root</p>
+        </div>
       </div>
     </section>
 
-    <section id="skills">
-      <h2>Skill Mapping</h2>
+    <section id="subagents" class="band">
+      <div class="section-head">
+        <div>
+          <h2>Sub Agent คืออะไรใน DevBuddy</h2>
+          <p class="lead">
+            Sub agent คือ role เฉพาะทางที่ main agent เรียกใช้เมื่อการแบ่งงานช่วยลดความเสี่ยง
+            ลด context load หรือให้มุมมองเฉพาะด้านที่ดีกว่า แต่ main agent ยังต้องรับผิดชอบภาพรวม
+            การตัดสินใจ และคำตอบสุดท้าย
+          </p>
+        </div>
+        <div class="warning-note">
+          อย่าเรียก sub agent เพียงเพราะมีให้ใช้ งานเล็ก ๆ ที่ main agent มี context พอแล้ว
+          ควรทำตรง ๆ เพื่อเลี่ยง overhead และการอ่านไฟล์ซ้ำ
+        </div>
+      </div>
+
+      <div class="comparison">
+        <article class="info-card">
+          <h3>Main Agent รับผิดชอบ</h3>
+          <ul>
+            <li>อ่านคำขอและ classify งาน</li>
+            <li>ตัดสินใจว่าจะ route งานหรือทำเอง</li>
+            <li>ส่ง context ให้ sub agent เฉพาะเท่าที่จำเป็น</li>
+            <li>รวม findings เป็น plan หรือ final answer เดียว</li>
+            <li>รักษา planning, approval, review, memory และ definition-of-done rules</li>
+          </ul>
+        </article>
+        <article class="info-card">
+          <h3>Sub Agent รับผิดชอบ</h3>
+          <ul>
+            <li>ทำงานเฉพาะบทบาท เช่น analyze, frontend, backend หรือ QA</li>
+            <li>อ่านไฟล์/คำสั่งเท่าที่ task-local context ระบุ</li>
+            <li>คืนผลแบบ concise พร้อม file refs, risks, unknowns และ confidence</li>
+            <li>เสนอ memory update ให้ parent workflow เมื่อควรจำ</li>
+            <li>ไม่แทนที่ final judgment ของ main agent</li>
+          </ul>
+        </article>
+      </div>
+
+      <h3>เมื่อไหร่ควรเรียก sub agent</h3>
+      <div class="grid two">
+        <article class="info-card">
+          <h3>ควรเรียก</h3>
+          <ul>
+            <li>ต้องสำรวจหลาย module หรือหลาย concern</li>
+            <li>ต้องการ read-only analysis ก่อนแก้จริง</li>
+            <li>งาน frontend/backend/data มีรายละเอียดเฉพาะทางชัดเจน</li>
+            <li>ต้องการ QA pass เพื่อหา regression หรือ missing tests</li>
+            <li>การแบ่งงานช่วยให้ main agent ไม่ต้องโหลด context กว้างเกินไป</li>
+          </ul>
+        </article>
+        <article class="info-card">
+          <h3>ไม่ควรเรียก</h3>
+          <ul>
+            <li>งานเล็กและมี context ครบแล้ว</li>
+            <li>ต้องส่ง repo context กว้างมากจน overhead สูง</li>
+            <li>sub agent หลายตัวจะต้องอ่านไฟล์ชุดเดียวกันซ้ำ</li>
+            <li>ต้องการ operations โดยผู้ใช้ไม่ได้ระบุ DevOps/CI/CD/deployment/runtime intent</li>
+            <li>ผลลัพธ์ที่ต้องการเป็นคำตอบสั้น ๆ ไม่ใช่งานวิเคราะห์หรือเปลี่ยนโค้ด</li>
+          </ul>
+        </article>
+      </div>
+
+      <h3>Role profiles</h3>
+      <div class="grid three">
+        <article class="role-card">
+          <span class="role-key">analyze</span>
+          <h3>Read-only analysis</h3>
+          <p>สำรวจ project, source, tests, business rules, risks และ unknowns ก่อน implementation โดยไม่แก้ไฟล์</p>
+          <div class="tag-row">
+            <span class="tag strong">planning</span>
+            <span class="tag">read-only</span>
+          </div>
+        </article>
+        <article class="role-card">
+          <span class="role-key">frontend</span>
+          <h3>Frontend / Angular</h3>
+          <p>ดูแล UI behavior, accessibility, responsive layout, styling, routing, state, forms และ frontend tests</p>
+          <div class="tag-row">
+            <span class="tag strong">Angular</span>
+            <span class="tag">UX</span>
+          </div>
+        </article>
+        <article class="role-card">
+          <span class="role-key">backend</span>
+          <h3>Backend / .NET</h3>
+          <p>ดูแล APIs, data flow, validation, persistence, runtime config, diagnostics, security, performance และ backend tests</p>
+          <div class="tag-row">
+            <span class="tag strong">.NET</span>
+            <span class="tag">API</span>
+          </div>
+        </article>
+        <article class="role-card">
+          <span class="role-key">qa</span>
+          <h3>Quality review</h3>
+          <p>หา bugs, regressions, missing tests, acceptance gaps และ verification risks หลังแก้หรือระหว่าง planning</p>
+          <div class="tag-row">
+            <span class="tag strong">review</span>
+            <span class="tag">tests</span>
+          </div>
+        </article>
+        <article class="role-card">
+          <span class="role-key">docs</span>
+          <h3>Documentation</h3>
+          <p>สร้างหรือปรับ README, usage guides, migration notes, changelogs, skill docs, adapter docs และ consistency ของ docs</p>
+          <div class="tag-row">
+            <span class="tag strong">manuals</span>
+            <span class="tag">guides</span>
+          </div>
+        </article>
+        <article class="role-card">
+          <span class="role-key">data</span>
+          <h3>Data correctness</h3>
+          <p>ดูแล data models, schema changes, migrations, query behavior, ownership, integrity, compatibility และ rollback risks</p>
+          <div class="tag-row">
+            <span class="tag strong">schema</span>
+            <span class="tag">migration</span>
+          </div>
+        </article>
+        <article class="role-card">
+          <span class="role-key">operations</span>
+          <h3>Operations opt-in</h3>
+          <p>ใช้เฉพาะเมื่อผู้ใช้ระบุ operations, DevOps, CI/CD, Docker, release, deployment, hosting หรือ runtime environment</p>
+          <div class="tag-row">
+            <span class="tag strong">explicit only</span>
+            <span class="tag">runtime</span>
+          </div>
+        </article>
+      </div>
+
+      <h3>Context contract สำหรับส่งงานให้ sub agent</h3>
       <table>
         <thead>
           <tr>
-            <th>งาน</th>
-            <th>Skill ที่ควรใช้</th>
+            <th>ต้องส่ง</th>
+            <th>เหตุผล</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Architecture, planning, review, Angular, .NET, memory workflow</td>
-            <td><code>devbuddy</code> หรือ <code>skill</code></td>
+            <td>Goal และ success criteria</td>
+            <td>ให้ sub agent รู้ว่าความสำเร็จหน้าตาเป็นอย่างไร</td>
           </tr>
           <tr>
-            <td>Claude skill packaging หรือ Claude Code agents</td>
-            <td><code>devbuddy</code></td>
+            <td>Relevant paths, symbols, commands หรือ workflow</td>
+            <td>จำกัดการอ่านให้แคบและลด token overhead</td>
           </tr>
           <tr>
-            <td>ทดสอบเว็บหรือ local UI ใน browser</td>
-            <td><code>browser:control-in-app-browser</code></td>
+            <td>Mutation constraints</td>
+            <td>บอกชัดว่า read-only หรืออนุญาตให้แก้ไฟล์บางส่วน</td>
           </tr>
           <tr>
-            <td>PDF</td>
-            <td><code>pdf</code></td>
+            <td>Output shape</td>
+            <td>ทำให้ผลลัพธ์รวมกลับเข้า main workflow ได้ง่าย</td>
           </tr>
           <tr>
-            <td>Word/docx</td>
-            <td><code>documents</code></td>
-          </tr>
-          <tr>
-            <td>Excel/CSV/spreadsheet</td>
-            <td><code>spreadsheets</code></td>
-          </tr>
-          <tr>
-            <td>สร้างหรือแก้ภาพ bitmap</td>
-            <td><code>imagegen</code></td>
-          </tr>
-          <tr>
-            <td>สร้างหรือปรับ skill/plugin</td>
-            <td><code>skill-creator</code>, <code>skill-installer</code>, <code>plugin-creator</code></td>
+            <td>Known business rules, assumptions, unknowns</td>
+            <td>ป้องกันการเดา business rule ใหม่หรือวิเคราะห์ซ้ำโดยไม่จำเป็น</td>
           </tr>
         </tbody>
       </table>
-    </section>
 
-    <section id="memory">
-      <h2>Memory Files</h2>
+      <h3>Output contract ของ sub agent</h3>
       <ul>
-        <li><code>Context.md</code>: architecture, modules, data flow, dependencies, runtime behavior, test strategy</li>
-        <li><code>BusinessContext.md</code>: domains, users, workflows, business rules, edge cases, compliance constraints</li>
-        <li><code>DecisionLog.md</code>: decisions, alternatives, trade-offs, rationale</li>
-        <li><code>KnowledgeBase.md</code>: lessons learned, anti-patterns, bug prevention, proven solutions</li>
+        <li>สรุป business และ technical impact แบบกระชับ</li>
+        <li>ระบุ files หรือ areas ที่ inspect, change หรือ recommend</li>
+        <li>ให้ findings พร้อม file references เมื่อมีหลักฐานในไฟล์</li>
+        <li>ระบุ risks, unknowns, confidence และ recommended next steps/tests</li>
+        <li>ไม่ paste full files หรือ logs ยาว ๆ ให้ summarize และ cite จุดที่สำคัญที่สุด</li>
       </ul>
-      <p>อัปเดต memory เฉพาะเมื่อมีความรู้ที่ควรจำข้ามงาน และต้อง preserve ของเดิม ไม่ overwrite ทั้งไฟล์โดยไม่จำเป็น</p>
     </section>
 
-    <section id="claude">
-      <h2>Claude Code</h2>
-      <p>ใน Claude Code ให้แยกกติกาเฉพาะ subagent ไว้ใน <code>.claude/agents/</code> และเก็บ role behavior ที่ใช้ร่วมกันไว้ใน <code>skill/agents/shared/</code></p>
+    <section id="memory" class="band compact">
+      <div class="section-head">
+        <div>
+          <h2>Memory files</h2>
+          <p class="lead">
+            DevBuddy มี memory files สำหรับเก็บความรู้ที่ควรอยู่ข้ามงาน แต่ไม่ได้อ่านทุกครั้ง
+            จะอ่านเฉพาะเมื่อช่วยเรื่อง project-specific context, business rules, prior decisions หรือ lessons learned
+          </p>
+        </div>
+        <div class="aside-note">
+          ลำดับอ่านเมื่อจำเป็นคือ <code>Context.md</code>,
+          <code>BusinessContext.md</code>, <code>DecisionLog.md</code>,
+          แล้ว <code>KnowledgeBase.md</code>
+        </div>
+      </div>
 
-      <h3>Skill Packaging</h3>
-      <ul>
-        <li>Claude Code จะเห็น <code>/devbuddy</code> เมื่อมีไฟล์ <code>.claude/skills/devbuddy/SKILL.md</code> ใน project หรือ <code>~/.claude/skills/devbuddy/SKILL.md</code> แบบ global</li>
-        <li><code>packages/devbuddy-claude.zip</code> เป็น distribution archive เท่านั้น ไม่ได้ถูก auto-load จาก repo</li>
-        <li>ถ้าเพิ่ม <code>.claude/skills/</code> หลังเปิด Claude Code ไปแล้ว ให้ restart Claude Code จาก repo root</li>
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>ไฟล์</th>
+            <th>ใช้เก็บอะไร</th>
+            <th>ควรอัปเดตเมื่อ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>skill/Context.md</code></td>
+            <td>architecture, modules, data flow, dependencies, runtime behavior และ test strategy</td>
+            <td>มี technical understanding ใหม่ที่ช่วยงานถัดไป</td>
+          </tr>
+          <tr>
+            <td><code>skill/BusinessContext.md</code></td>
+            <td>domains, users, workflows, business rules, edge cases และ compliance constraints</td>
+            <td>เจอ business rule หรือ domain behavior ที่ควรจำถาวร</td>
+          </tr>
+          <tr>
+            <td><code>skill/DecisionLog.md</code></td>
+            <td>durable decisions, trade-offs, alternatives และ rationale</td>
+            <td>มี architectural หรือ product/technical decision ที่ควรอ้างอิงภายหลัง</td>
+          </tr>
+          <tr>
+            <td><code>skill/KnowledgeBase.md</code></td>
+            <td>lessons learned, anti-patterns, bug prevention และ proven solutions</td>
+            <td>พบ pattern ที่ช่วยป้องกัน bug หรือทำงานเร็วขึ้นในอนาคต</td>
+          </tr>
+        </tbody>
+      </table>
 
-      <h3>Project Agents</h3>
-      <p>เมื่อต้องใช้ native project agents ให้คัดลอก <code>.claude/agents/</code> และ <code>skill/</code> ลงใน project root เดียวกัน</p>
+      <div class="warning-note">
+        อัปเดต memory เฉพาะข้อมูลที่ durable จริง และต้อง preserve ของเดิมเสมอ
+        ถ้าเป็น assumption ให้ระบุว่าเป็น assumption ไม่ใช่ข้อเท็จจริง
+      </div>
     </section>
 
-    <section id="examples">
-      <h2>ตัวอย่าง Prompt</h2>
-      <h3>งานวิเคราะห์ก่อนแก้</h3>
-      <pre><code>ใช้ DevBuddy วิเคราะห์ feature login ก่อนแก้โค้ด
-ขอ affected files, risks, missing tests, และ implementation plan</code></pre>
+    <section id="usage" class="band">
+      <div class="section-head">
+        <div>
+          <h2>วิธีใช้งาน</h2>
+          <p class="lead">
+            ถ้าใช้ใน Claude Code และ path พร้อมแล้ว ให้เรียก <code>/devbuddy</code>
+            หรือบอกให้ AI ใช้ DevBuddy workflow ในโจทย์โดยตรง
+          </p>
+        </div>
+        <div class="success-note">
+          ถ้าเพิ่ม <code>.claude/skills/</code> หลังเปิด Claude Code แล้ว
+          ให้ restart Claude Code จาก repo root เพื่อให้เห็น <code>/devbuddy</code>
+        </div>
+      </div>
 
-      <h3>งาน frontend</h3>
-      <pre><code>ปรับหน้า dashboard ให้ responsive ดีขึ้น
-ใช้ frontend profile ตรวจ existing UI pattern ก่อน แล้วค่อยเสนอ plan</code></pre>
+      <h3>Prompt examples</h3>
+      <div class="grid two">
+        <article class="step-card">
+          <h3>วิเคราะห์ก่อนแก้</h3>
+          <pre><code>ใช้ DevBuddy วิเคราะห์ feature login ก่อนแก้โค้ด
+ขอ current behavior, affected files, risks, missing tests,
+implementation plan และ confidence</code></pre>
+        </article>
+        <article class="step-card">
+          <h3>งาน frontend</h3>
+          <pre><code>ใช้ DevBuddy ปรับหน้า dashboard ให้ responsive ดีขึ้น
+ให้ frontend profile ตรวจ existing UI pattern,
+accessibility risk และ test ที่ควร verify ก่อนเสนอ plan</code></pre>
+        </article>
+        <article class="step-card">
+          <h3>งาน backend</h3>
+          <pre><code>ใช้ DevBuddy เพิ่ม validation ให้ API create order
+ตรวจ business rules, API contract, persistence impact,
+security concern และ tests ที่ควรเพิ่ม</code></pre>
+        </article>
+        <article class="step-card">
+          <h3>งาน review</h3>
+          <pre><code>review change นี้แบบ DevBuddy
+ให้ findings ก่อน summary, ระบุ file/line references,
+test gaps, regression risks และ recommended verification</code></pre>
+        </article>
+      </div>
 
-      <h3>งาน backend</h3>
-      <pre><code>เพิ่ม validation ให้ API create order
-ตรวจ business rules, API contract, persistence impact, และ tests ที่ควรเพิ่ม</code></pre>
+      <h3>คำสั่ง package ที่เกี่ยวข้อง</h3>
+      <pre><code># จาก repository root
+./prepare-zips.sh
 
-      <h3>งาน review</h3>
-      <pre><code>review change นี้แบบ DevBuddy
-ให้ findings ก่อน summary และระบุ file/line references ถ้ามี</code></pre>
+# Windows
+prepare-zips.bat</code></pre>
     </section>
 
-    <section id="checklist">
-      <h2>Checklist ก่อนจบงาน</h2>
-      <ul>
+    <section id="maintenance" class="band compact">
+      <div class="section-head">
+        <div>
+          <h2>Maintenance notes</h2>
+          <p class="lead">
+            DevBuddy ถูกดูแลเป็น skill เดียวที่มีหลาย adapter ดังนั้นการแก้ behavior ต้องเริ่มจาก shared source
+            แล้วค่อยตรวจ alignment ของ Claude Code path และ package copy
+          </p>
+        </div>
+        <div class="aside-note">
+          ถ้าแก้ role behavior ให้แก้ <code>skill/agents/shared/</code> ก่อน
+          แล้วตรวจ <code>.claude/agents/</code> ที่ตรงกัน
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ต้องการเปลี่ยน</th>
+            <th>แก้ที่ไหนก่อน</th>
+            <th>ต้องตรวจอะไรต่อ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Workflow หลัก, planning, memory policy, definition of done</td>
+            <td><code>skill/SKILL.md</code></td>
+            <td><code>.claude/skills/devbuddy/SKILL.md</code> และ package copy หลัง rebuild</td>
+          </tr>
+          <tr>
+            <td>Scope, constraints หรือ output ของ sub agent</td>
+            <td><code>skill/agents/shared/*.md</code></td>
+            <td>adapter ที่ตรงกันใน <code>.claude/agents/</code></td>
+          </tr>
+          <tr>
+            <td>Claude Code-specific prompt, tools หรือ frontmatter</td>
+            <td><code>.claude/agents/*.md</code></td>
+            <td>shared spec ต้องยังไม่ขัดกับ adapter</td>
+          </tr>
+          <tr>
+            <td>Distribution package</td>
+            <td>root source files แล้ว run <code>prepare-zips</code></td>
+            <td><code>packages/claude/devbuddy/</code> และ zip archive ที่ build ใหม่</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning-note">
+        อย่าแก้เฉพาะไฟล์ใน <code>packages/claude/devbuddy/</code> แล้วลืม source หลัก
+        เพราะ package layout เป็นผลลัพธ์สำหรับ install/distribution และควร rebuild ได้
+      </div>
+    </section>
+
+    <section id="checklist" class="band">
+      <div class="section-head">
+        <div>
+          <h2>Checklist สำหรับคนใช้ DevBuddy</h2>
+          <p class="lead">
+            ใช้รายการนี้เช็คว่า agent ทำงานตามเจตนาของ skill แล้วหรือยัง
+          </p>
+        </div>
+        <div class="success-note">
+          Definition of done ของ DevBuddy ต้องครอบคลุม business requirements,
+          technical requirements, verification, risks, review และ memory เมื่อเกี่ยวข้อง
+        </div>
+      </div>
+
+      <ul class="checklist">
+        <li>อ่าน <code>SKILL.md</code> แล้วก่อนเริ่มงาน</li>
+        <li>classify งานถูกประเภทแล้ว</li>
         <li>เข้าใจ business goal และ affected workflow แล้ว</li>
-        <li>อ่าน source/tests เฉพาะส่วนที่เกี่ยวข้องแล้ว</li>
-        <li>มี plan หรือ rationale ก่อนแก้โค้ด</li>
-        <li>ใช้ subagent เฉพาะเมื่อคุ้มกับ token overhead</li>
-        <li>output ของ subagent กระชับ มี file refs, risks, confidence</li>
+        <li>โหลด memory เฉพาะเมื่อมีประโยชน์จริง</li>
+        <li>อ่าน source/tests เฉพาะพื้นที่ที่เกี่ยวข้อง</li>
+        <li>ระบุ unknowns และถามเฉพาะคำถามที่มีผลต่อ correctness</li>
+        <li>มี plan ก่อน implementation เมื่อเป็นงานแก้โค้ด</li>
+        <li>เลือก sub agent เมื่อช่วยลด risk หรือ context load จริง</li>
+        <li>ไม่ใช้ operations role เว้นแต่ผู้ใช้ระบุ operations intent</li>
         <li>change มีขอบเขตเล็กและ maintainable</li>
-        <li>tests หรือ validation เหมาะกับความเสี่ยง</li>
-        <li>memory files อัปเดตเมื่อมี durable knowledge</li>
+        <li>review ครอบคลุม correctness, business, security, performance และ testability</li>
+        <li>รัน test หรือ validation ที่เหมาะสม และอธิบาย test ที่ไม่ได้รัน</li>
+        <li>อัปเดต memory เฉพาะ durable knowledge ที่ควรจำข้ามงาน</li>
+        <li>final answer รวมผลจาก sub agent เป็นคำตอบเดียวที่ actionable</li>
       </ul>
     </section>
   </main>
 
   <footer>
-    DevBuddy Usage Guide. เปิดไฟล์นี้ได้โดยตรงจาก browser หรือแนบไปกับ package documentation ได้ทันที
+    <div class="wrap">
+      DevBuddy Skill Manual. ไฟล์นี้เป็น static HTML เปิดใน browser ได้โดยตรงจาก repository root:
+      <code>devbuddy-usage-guide.html</code>
+    </div>
   </footer>
 </body>
 </html>
