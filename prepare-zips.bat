@@ -3,7 +3,7 @@ setlocal
 
 set "ROOT=%~dp0"
 set "PACKAGES=%ROOT%packages"
-set "CLAUDE_SRC=%PACKAGES%\claude\devbuddy\skill"
+set "CLAUDE_SRC=%ROOT%\.claude\skills\devbuddy"
 set "CLAUDE_ZIP=%PACKAGES%\devbuddy-claude.zip"
 
 if not exist "%CLAUDE_SRC%\SKILL.md" (

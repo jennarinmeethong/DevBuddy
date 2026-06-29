@@ -359,9 +359,9 @@
 
       <h3>Skill Packaging</h3>
       <ul>
-        <li>Claude skill archive ต้องมี top-level folder ชื่อ <code>devbuddy/</code></li>
-        <li>ใน folder นั้นต้องมี <code>SKILL.md</code> ที่ root</li>
-        <li>เมื่อติดตั้งถูกต้อง Claude จะเรียก skill ได้ด้วย <code>/devbuddy</code></li>
+        <li>Claude Code จะเห็น <code>/devbuddy</code> เมื่อมีไฟล์ <code>.claude/skills/devbuddy/SKILL.md</code> ใน project หรือ <code>~/.claude/skills/devbuddy/SKILL.md</code> แบบ global</li>
+        <li><code>packages/devbuddy-claude.zip</code> เป็น distribution archive เท่านั้น ไม่ได้ถูก auto-load จาก repo</li>
+        <li>ถ้าเพิ่ม <code>.claude/skills/</code> หลังเปิด Claude Code ไปแล้ว ให้ restart Claude Code จาก repo root</li>
       </ul>
 
       <h3>Project Agents</h3>

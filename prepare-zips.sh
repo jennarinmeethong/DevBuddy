@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PACKAGES="$ROOT/packages"
-CLAUDE_SRC="$PACKAGES/claude/devbuddy/skill"
+CLAUDE_SRC="$ROOT/.claude/skills/devbuddy"
 CLAUDE_ZIP="$PACKAGES/devbuddy-claude.zip"
 
 if [[ ! -f "$CLAUDE_SRC/SKILL.md" ]]; then
