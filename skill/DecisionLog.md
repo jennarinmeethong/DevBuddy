@@ -38,39 +38,39 @@ Trade-offs: A short source section adds minor maintenance overhead, but makes pr
 Outcome: Add source links to `references/optional-specialized-skills.md` for `dotnet/skills` and `angular/skills`.
 
 Date: 2026-06-21
-Decision: Split DevBuddy role guidance into analyze, frontend, and backend agent profiles with platform adapters.
-Context: Users want Codex and Claude workflows to delegate analysis, frontend, and backend work to focused roles while preserving DevBuddy's senior-engineer workflow and shared project memory.
-Alternatives: Keep all role guidance only inside `SKILL.md`; create separate standalone skills for each role; create only Claude subagents without Codex routing.
-Trade-offs: Shared specs plus adapters add a small amount of structure to maintain, but avoid duplicating prompts and prevent platform-specific subagent assumptions from leaking across runtimes.
-Outcome: Add shared role specs under `agents/shared/`, Claude native subagents under `.claude/agents/`, and Codex routing/profile adapters under `agents/openai.yaml` and `agents/codex/`.
+Decision: Split DevBuddy role guidance into analyze, frontend, and backend Claude Code agent profiles.
+Context: Users want Claude workflows to delegate analysis, frontend, and backend work to focused roles while preserving DevBuddy's senior-engineer workflow and shared project memory.
+Alternatives: Keep all role guidance only inside `SKILL.md`; create separate standalone skills for each role.
+Trade-offs: Shared specs plus adapters add a small amount of structure to maintain, but avoid duplicating prompts.
+Outcome: Add shared role specs under `agents/shared/` and Claude native subagents under `.claude/agents/`.
 
 Date: 2026-06-21
 Decision: Add explicit DevBuddy orchestration, context contract, output contract, skill mapping, and token policy.
 Context: Focused agent profiles existed, but the rules for when the main agent should route work, what context to pass, and how to keep outputs compact were implicit.
-Alternatives: Keep routing as informal conversation guidance; duplicate routing rules in every role profile; make Codex-specific behavior part of shared specs.
+Alternatives: Keep routing as informal conversation guidance; duplicate routing rules in every role profile.
 Trade-offs: A new shared policy file adds one more reference to maintain, but keeps role files concise and prevents repeated or platform-specific instructions.
-Outcome: Add `agents/shared/orchestration.md`, add Codex-specific operational guidance in `agents/codex/operations.md`, and link both from relevant profiles.
+Outcome: Add `agents/shared/orchestration.md` and link it from relevant profiles.
 
 Date: 2026-06-22
 Decision: Add QA, operations, docs, and data DevBuddy subagent profiles while keeping operations explicit-use only.
 Context: Existing analyze, frontend, and backend profiles covered primary discovery and implementation work, but quality review, operational work, documentation, and data-focused changes benefit from narrower role guidance. Operations work is higher-risk and should not be selected just because a task touches builds, scripts, backend configuration, Dockerfiles, or deployment-adjacent files.
 Alternatives: Keep all new responsibilities inside existing profiles; add only QA; make operations route automatically from deployment-adjacent files.
 Trade-offs: More role files increase adapter maintenance, but shared specs keep behavior consistent and focused. Requiring explicit operations intent may route some ambiguous tasks through backend or QA first, but prevents accidental infrastructure changes.
-Outcome: Add shared, Codex, and Claude profiles for `qa`, `operations`, `docs`, and `data`; point the Codex operations role to `agents/codex/operations-profile.md`; document the operations opt-in rule in orchestration, routing metadata, and primary docs.
+Outcome: Add shared and Claude profiles for `qa`, `operations`, `docs`, and `data`; document the operations opt-in rule in orchestration and primary docs.
 
 Date: 2026-06-22
-Decision: Keep Codex and Claude subagent install packages separated while sharing role specs.
-Context: DevBuddy maintains shared role behavior in one source tree, but users need platform-specific subagent packages so Claude installs do not carry Codex routing files and Codex installs do not carry Claude native agents.
-Alternatives: Include all adapters in every package; duplicate shared specs separately per platform.
-Trade-offs: Separate packages require package snapshot maintenance, but avoid platform leakage and keep shared behavior consistent.
-Outcome: Codex package contains `agents/openai.yaml`, `agents/codex/`, and `agents/shared/`; Claude package contains `.claude/agents/` and `skill/agents/shared/` without Codex routing metadata or Codex adapter files.
+Decision: Keep the install package Claude-focused while sharing role specs.
+Context: DevBuddy maintains shared role behavior in one source tree, and Claude installs should carry only Claude project agents plus shared role specs.
+Alternatives: Include unused platform adapters in the package; duplicate shared specs in each agent prompt.
+Trade-offs: A Claude-focused package is simpler to install and maintain, while shared specs still prevent prompt drift.
+Outcome: The Claude package contains `.claude/agents/` and `skill/agents/shared/`.
 
 Date: 2026-06-22
-Decision: Generate separate Claude skill and Claude project archives from package scripts.
-Context: The previous Claude archive bundled `.claude/agents/` and `skill/`, which was useful as a project bundle but was not directly installable as a Claude skill without manually zipping the `skill` folder.
-Alternatives: Keep only the project bundle; replace the project bundle entirely with a skill archive.
-Trade-offs: Producing one additional archive adds a small packaging artifact, but preserves Claude Code project-agent installation while making Claude skill installation direct.
-Outcome: `devbuddy-claude.zip` is now a Claude skill install archive with a top-level `devbuddy/` skill folder, and `devbuddy-claude-project.zip` keeps the project bundle containing `.claude/agents/` plus `skill/`.
+Decision: Generate a Claude skill archive from package scripts.
+Context: The archive must be directly installable as a Claude skill and expose `/devbuddy`.
+Alternatives: Zip the `skill/` folder directly; keep a project bundle archive.
+Trade-offs: Building a temporary top-level `devbuddy/` folder avoids manual packaging mistakes and keeps the install archive focused.
+Outcome: `devbuddy-claude.zip` is a Claude skill install archive with a top-level `devbuddy/` skill folder containing `SKILL.md`.
 
 Use this format:
 

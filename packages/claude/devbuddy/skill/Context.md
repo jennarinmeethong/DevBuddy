@@ -2,17 +2,17 @@
 
 ## Project Structure
 
-This package is a DevBuddy skill with shared memory files, capability references, workflow references, platform adapters, and optional framework guidance.
+This package is a DevBuddy Claude skill with shared memory files, capability references, workflow references, Claude Code adapters, and optional framework guidance.
 
 ## Architecture
 
 DevBuddy uses `skill/SKILL.md` as the canonical orchestrator for business understanding, planning discipline, approval before implementation, review, and memory updates.
 
-Focused agent role guidance is split into shared specs under `skill/agents/shared/`, Codex adapters under `skill/agents/codex/` with routing metadata in `skill/agents/openai.yaml`, and Claude Code native project subagents under `.claude/agents/`.
+Focused agent role guidance is split into shared specs under `skill/agents/shared/` and Claude Code native project subagents under `.claude/agents/`.
 
-Shared orchestration policy lives in `skill/agents/shared/orchestration.md`. Codex-specific operational rules live in `skill/agents/codex/operations.md`. The Codex operations role adapter is `skill/agents/codex/operations-profile.md` to avoid conflicting with those Codex-specific operational rules.
+Shared orchestration policy lives in `skill/agents/shared/orchestration.md`.
 
-Install packages are separated by assistant. `packages/codex/devbuddy/` contains Codex routing metadata, Codex adapters, and shared specs. `packages/claude/devbuddy/` contains Claude native agents and shared specs, without Codex routing metadata or Codex adapter files.
+The install package lives under `packages/claude/devbuddy/` and contains Claude native agents plus shared specs.
 
 ## Modules
 
@@ -42,8 +42,8 @@ No data models recorded yet.
 
 ## Runtime Behavior
 
-- Run `prepare-zips.bat` from Windows cmd or `prepare-zips.sh` from a bash-compatible shell to recreate `packages/devbuddy-codex.zip` and `packages/devbuddy-claude.zip`.
-- The Codex archive contains the `devbuddy/` folder as its root. The Claude archive contains `.claude/` and `skill/` at its root.
+- Run `prepare-zips.bat` from Windows cmd or `prepare-zips.sh` from a bash-compatible shell to recreate `packages/devbuddy-claude.zip`.
+- The Claude skill archive contains a top-level `devbuddy/` folder with `SKILL.md` at its root.
 
 ## Test Strategy
 
@@ -52,4 +52,3 @@ No test strategy recorded yet.
 ## Unknowns
 
 - Target project details must be discovered before implementation tasks.
-

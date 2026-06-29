@@ -8,8 +8,7 @@ Provide a reusable, platform-independent senior developer workflow for AI coding
 
 The skill package contains:
 
-- A Codex-compatible `SKILL.md`.
-- A cross-platform `skill.md`.
+- A Claude-compatible `SKILL.md`.
 - Persistent memory files for technical context, business context, decisions, and learning.
 - Focused principle, capability, workflow, and template documents.
 - Progressive Angular capability, workflow, and reference documents for Angular-specific tasks.
@@ -30,12 +29,12 @@ The chosen approach uses focused Markdown files to support progressive disclosur
 
 ## Open Questions
 
-- Whether future consumers need platform-specific adapters for assistants other than Codex.
+- Whether future consumers need additional Claude Code subagent profiles.
 
 ## Confidence Level
 
-HIGH: the package follows the requested structure and includes Codex-compatible metadata.
+HIGH: the package follows the requested structure and includes Claude-compatible metadata.
 
 ## Recommendation
 
-Use `SKILL.md` for Codex and `skill.md` for platform-independent assistants.
+Use `SKILL.md` as the Claude skill entrypoint.

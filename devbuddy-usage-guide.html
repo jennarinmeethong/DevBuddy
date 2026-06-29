@@ -186,7 +186,7 @@
   <header>
     <div class="wrap">
       <h1>DevBuddy Usage Guide</h1>
-      <p>คู่มือใช้งาน DevBuddy สำหรับ workflow แบบ senior developer, agent orchestration, skill routing, และการประหยัด token ใน Codex</p>
+      <p>คู่มือใช้งาน DevBuddy สำหรับ workflow แบบ senior developer, Claude Code agent orchestration, skill routing, และการประหยัด token</p>
     </div>
   </header>
 
@@ -207,7 +207,7 @@
         <li><a href="#routing">การเรียก Agent ย่อย</a></li>
         <li><a href="#skills">Skill Mapping</a></li>
         <li><a href="#memory">Memory Files</a></li>
-        <li><a href="#codex">Codex และ RTK</a></li>
+        <li><a href="#claude">Claude Code</a></li>
         <li><a href="#examples">ตัวอย่าง Prompt</a></li>
         <li><a href="#checklist">Checklist</a></li>
       </ul>
@@ -311,8 +311,8 @@
             <td><code>devbuddy</code> หรือ <code>skill</code></td>
           </tr>
           <tr>
-            <td>OpenAI API, Codex, model/docs ล่าสุด</td>
-            <td><code>openai-docs</code></td>
+            <td>Claude skill packaging หรือ Claude Code agents</td>
+            <td><code>devbuddy</code></td>
           </tr>
           <tr>
             <td>ทดสอบเว็บหรือ local UI ใน browser</td>
@@ -353,22 +353,19 @@
       <p>อัปเดต memory เฉพาะเมื่อมีความรู้ที่ควรจำข้ามงาน และต้อง preserve ของเดิม ไม่ overwrite ทั้งไฟล์โดยไม่จำเป็น</p>
     </section>
 
-    <section id="codex">
-      <h2>Codex และ RTK</h2>
-      <p>ใน Codex adapter ให้แยกกติกาเฉพาะแพลตฟอร์มไว้ใน <code>agents/codex/operations.md</code> เพื่อไม่ให้ shared policy ปนกับ behavior เฉพาะ Codex</p>
+    <section id="claude">
+      <h2>Claude Code</h2>
+      <p>ใน Claude Code ให้แยกกติกาเฉพาะ subagent ไว้ใน <code>.claude/agents/</code> และเก็บ role behavior ที่ใช้ร่วมกันไว้ใน <code>skill/agents/shared/</code></p>
 
-      <h3>Plan Mode</h3>
+      <h3>Skill Packaging</h3>
       <ul>
-        <li>ใน Plan Mode ให้ถือว่า repo-tracked files เป็น read-only</li>
-        <li>ใช้ agent ย่อยเพื่อ discovery, validation, risk analysis เท่านั้น</li>
-        <li>ต้องออกแผน approval-ready ก่อน implementation</li>
+        <li>Claude skill archive ต้องมี top-level folder ชื่อ <code>devbuddy/</code></li>
+        <li>ใน folder นั้นต้องมี <code>SKILL.md</code> ที่ root</li>
+        <li>เมื่อติดตั้งถูกต้อง Claude จะเรียก skill ได้ด้วย <code>/devbuddy</code></li>
       </ul>
 
-      <h3>RTK บน PowerShell</h3>
-      <p>ใช้ <code>rtk</code> เพื่อลด output จาก command ตาม workspace convention</p>
-      <pre><code>rtk rg --files
-rtk git status --short
-rtk proxy powershell -NoProfile -Command "Get-Content -LiteralPath 'C:\path\file.md'"</code></pre>
+      <h3>Project Agents</h3>
+      <p>เมื่อต้องใช้ native project agents ให้คัดลอก <code>.claude/agents/</code> และ <code>skill/</code> ลงใน project root เดียวกัน</p>
     </section>
 
     <section id="examples">

@@ -4,7 +4,7 @@ This skill guides AI coding assistants to behave like senior engineers: understa
 
 It also includes progressive Angular and .NET guidance for framework-specific projects and new app setup, loaded only when relevant.
 
-It is platform-independent. The canonical Codex entrypoint is `SKILL.md`; the cross-platform entrypoint is `skill.md`.
+It is packaged as a Claude skill. The canonical entrypoint is `SKILL.md`.
 
 ## Agent Profiles
 
@@ -22,7 +22,7 @@ DevBuddy defines seven role profiles that share the same memory files and senior
 
 Shared role specs live in `agents/shared/`.
 
-## Platform Adapters
+## Claude Code Adapters
 
 Claude Code can use native project subagents from `.claude/agents/`:
 
@@ -34,21 +34,18 @@ Claude Code can use native project subagents from `.claude/agents/`:
 - `devbuddy-docs`
 - `devbuddy-data`
 
-Codex uses the main DevBuddy skill as the orchestrator and routes work through the Codex adapter metadata in `agents/openai.yaml` plus the profile prompts in `agents/codex/`.
+`SKILL.md` remains responsible for business understanding, planning discipline, approval before implementation when required, review, and memory updates.
 
-In both platforms, `SKILL.md` remains responsible for business understanding, planning discipline, approval before implementation when required, review, and memory updates.
-
-Install packages are platform-specific. The Codex package contains `agents/openai.yaml`, `agents/codex/`, and `agents/shared/`; the Claude package contains `.claude/agents/` and `skill/agents/shared/` but does not include Codex adapter files.
+The Claude package contains `.claude/agents/` and `skill/agents/shared/`.
 
 ## Adapter Maintenance
 
-DevBuddy is maintained as one conceptual skill with shared core behavior and thin platform adapters.
+DevBuddy is maintained as one conceptual skill with shared core behavior and Claude Code adapters.
 
 - Shared source of truth: `SKILL.md`, memory files, `workflows/`, `capabilities/`, `references/`, and `agents/shared/`.
-- Codex adapter source: `agents/openai.yaml` and `agents/codex/`.
 - Claude adapter source: `.claude/agents/`.
-- For shared behavior changes, update the shared source first, then review the corresponding Codex and Claude adapters.
-- For platform-only mechanics, update only that platform adapter and leave shared behavior unchanged.
+- For shared behavior changes, update the shared source first, then review the corresponding Claude adapters.
+- For Claude-only mechanics, update only the Claude adapter and leave shared behavior unchanged.
 
 ## Core Workflow
 

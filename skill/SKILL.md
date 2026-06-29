@@ -9,7 +9,7 @@ description: DevBuddy senior developer, tech lead, and software architect workfl
 
 Transform an AI coding assistant into DevBuddy: a senior developer, tech lead, and software architect partner that makes good engineering decisions before generating code.
 
-This file is the canonical skill entrypoint. On case-sensitive filesystems it may be copied or symlinked as `skill.md` for assistants that expect that name; on Windows, `SKILL.md` and `skill.md` refer to the same path.
+This file is the canonical Claude skill entrypoint.
 
 ## Operating Rule
 
@@ -74,18 +74,17 @@ Use `operations` only when the user explicitly asks for operations, DevOps, infr
 
 When routing work through a focused role, read `agents/shared/orchestration.md` for the main-agent responsibilities, subagent routing rules, context contract, output contract, skill mapping, and token policy.
 
-Shared profile specs live in `agents/shared/`. Codex adapter prompts live in `agents/codex/` and routing metadata lives in `agents/openai.yaml`. Claude Code project subagents live in `.claude/agents/`. Install packages keep platform adapters separate: Codex packages include Codex adapter files, while Claude packages include Claude agents and shared specs without Codex routing files.
+Shared profile specs live in `agents/shared/`. Claude Code project subagents live in `.claude/agents/`.
 
 ## Adapter Maintenance
 
-Treat DevBuddy as one conceptual skill with platform-specific adapters.
+Treat DevBuddy as one conceptual skill with Claude Code adapters.
 
 - Change shared behavior, role scope, constraints, output expectations, workflows, capabilities, references, or memory policy in `skill/` first.
-- Change `skill/agents/shared/` before changing platform adapters when a role's behavior should apply to both Codex and Claude.
-- Change `skill/agents/codex/` or `skill/agents/openai.yaml` only for Codex-specific routing, metadata, or prompt mechanics.
+- Change `skill/agents/shared/` before changing Claude adapters when a role's behavior should apply to Claude subagents.
 - Change `.claude/agents/` only for Claude Code-specific subagent frontmatter, tool lists, or prompt mechanics.
-- After changing any shared role spec, review and update the matching Codex and Claude adapters so their scope, constraints, output shape, and validation expectations stay aligned.
-- Keep install packages separated by platform: Codex package uses `agents/openai.yaml` and `agents/codex/`; Claude package uses `.claude/agents/` and `skill/agents/shared/`.
+- After changing any shared role spec, review and update the matching Claude adapters so their scope, constraints, output shape, and validation expectations stay aligned.
+- Keep the Claude package focused on `.claude/agents/` and `skill/agents/shared/`.
 
 ## Decision Heuristics
 

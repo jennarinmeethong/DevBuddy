@@ -5,16 +5,13 @@ DevBuddy is a senior-engineering workflow skill for AI coding assistants. It hel
 ## Source
 
 - `skill/` is the canonical shared skill source.
-- `skill/SKILL.md` is the Codex entrypoint.
-- `skill/agents/shared/` contains role guidance shared across platforms.
+- `skill/SKILL.md` is the Claude skill entrypoint.
+- `skill/agents/shared/` contains role guidance used by the skill and Claude subagents.
 - `.claude/agents/` contains Claude Code project subagent adapters.
 
 ## Packages
 
-Install-ready package layouts live under `packages/`:
-
-- `packages/codex/devbuddy/`
-- `packages/claude/devbuddy/`
+Install-ready package layouts live under `packages/claude/devbuddy/`.
 
 Edit source files first, then rebuild package layouts and archives from the updated source. Rebuildable zip archives are intentionally ignored by git.
 

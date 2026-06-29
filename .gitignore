@@ -40,3 +40,4 @@ TestResults/
 
 # Rebuildable distribution archives
 packages/*.zip
+packages/**/*.zip

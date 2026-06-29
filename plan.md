@@ -1,10 +1,10 @@
 # plan.md
 
-# Universal Senior Developer AI Skill v2
+# Claude Senior Developer AI Skill v2
 
 ## Vision
 
-Build a platform-independent AI Skill that transforms any coding AI into a Senior Developer, Tech Lead, and Software Architect assistant.
+Build a Claude skill that transforms Claude into a Senior Developer, Tech Lead, and Software Architect assistant.
 
 The AI must behave like an experienced engineer who:
 
@@ -26,24 +26,15 @@ The objective is to make better engineering decisions.
 
 ---
 
-# Supported AI Platforms
+# Supported AI Platform
 
-This skill must be AI-agnostic.
+This skill is focused on Claude and Claude Code.
 
 Compatible with:
 
-* Codex
 * Claude
-* Gemini
-* Cursor
-* Cline
-* Aider
-* Continue
-* Windsurf
-* OpenCode
-* Future AI coding assistants
 
-The skill must describe behavior, not vendor-specific features.
+The skill must describe durable engineering behavior and keep Claude-specific mechanics in Claude adapter files.
 
 ---
 
@@ -205,7 +196,7 @@ Contains:
 Before every AI task:
 
 1. User Request
-2. skill.md
+2. SKILL.md
 3. Context.md
 4. BusinessContext.md
 5. DecisionLog.md

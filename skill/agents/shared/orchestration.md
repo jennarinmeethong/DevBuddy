@@ -56,7 +56,7 @@ Do not paste full files or long command output. Summarize evidence and cite the 
 
 - Use DevBuddy for senior-engineering workflow, architecture, planning, implementation discipline, review, memory, Angular, and .NET.
 - Use more specific installed Angular or .NET skills when available, then return to DevBuddy for trade-offs, review, and learning.
-- Use document, PDF, spreadsheet, image, browser, OpenAI-docs, plugin, or skill-creation skills only when the task matches those domains.
+- Use document, PDF, spreadsheet, image, browser, plugin, or skill-creation skills only when the task matches those domains.
 
 ## Token Policy
 
