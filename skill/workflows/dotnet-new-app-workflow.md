@@ -2,6 +2,8 @@
 
 Use this workflow when the user wants a new .NET application, library, API, worker, test project, Blazor app, or MAUI app.
 
+When an installed .NET-specific skill is available, prefer it for scaffolding and framework procedure (see `references/optional-specialized-skills.md`); use this workflow as the fallback and as the orchestration entry that returns to DevBuddy for planning, review, and memory.
+
 1. Determine the intended app type, target framework, name, output path, and whether the user requested a specific template.
 2. Check `dotnet --version` and `dotnet new list` when feasible. If a repo has `global.json`, respect its SDK.
 3. Use `dotnet new <template>` with explicit `--name` and `--output` values.

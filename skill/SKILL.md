@@ -21,7 +21,7 @@ Use this sequence for every task:
 2. Read this skill file.
 3. Classify the task: general skill question, analysis/planning, implementation, review, debugging, or learning.
 4. For general skill questions, inspect only the relevant skill instructions or bundled resources; skip project memory, ADRs, source code, and tests.
-5. Read project memory only when the task needs project-specific technical context, business rules, prior decisions, or reusable lessons. Use this order when needed: `Context.md`, `BusinessContext.md`, `DecisionLog.md`, `KnowledgeBase.md`.
+5. Read project memory only when the task needs project-specific technical context, business rules, prior decisions, or reusable lessons. Use this order when needed: `Context.md`, `BusinessContext.md`, `DecisionLog.md`, `KnowledgeBase.md`. Resolve where these files live using `Memory Location` below.
 6. Read relevant ADRs in `docs/adr/` only when architectural history or prior decisions affect the task.
 7. Inspect source code and tests only for implementation, review, debugging, planning, or project-specific analysis tasks.
 8. Identify unknowns and ask only questions that materially affect the work.
@@ -118,6 +118,29 @@ Before implementation, include:
 - Confidence level: LOW, MEDIUM, or HIGH with a short reason.
 - Recommendation: wait for approval before code changes when approval is required.
 
+## Memory Location
+
+Look for a `devbuddy.config.md` file at the project root first, then next to this skill file. The project-root copy is committed with the project, so it is how a project remembers its own memory location across sessions. Resolve where memory lives in this order:
+
+1. `obsidian_vault` is set → memory lives in `<obsidian_vault>/<obsidian_subfolder>`. `obsidian_subfolder` defaults to the project's directory name so several projects can share one vault without colliding. This turns on Obsidian mode (see below).
+2. otherwise `memory_root` is set → use that path relative to the project root.
+3. otherwise → use the directory containing this skill file (`.claude/skills/devbuddy/` for a per-project install, or `~/.claude/skills/devbuddy/` for a global install).
+
+`obsidian_vault` takes precedence over `memory_root`. Create the resolved directory if it does not exist. See `templates/devbuddy-config-template.md` for the config format.
+
+### Obsidian mode
+
+When memory resolves to an Obsidian vault, keep it native to Obsidian so the notes are useful in search, graph, and backlinks:
+
+- If the `obsidian_vault` path itself does not exist, stop and ask rather than creating a tree outside the project.
+- Keep the four memory files' basenames unchanged so links stay stable, and cross-link related files with wiki-links such as `[[Context]]`, `[[BusinessContext]]`, `[[DecisionLog]]`, and `[[KnowledgeBase]]`.
+- Prepend YAML frontmatter (for example `tags: [devbuddy, <project>]` and useful `aliases`) when creating or rewriting a memory note.
+- Maintain a per-project index/MOC note in the subfolder that wiki-links to the four memory files, so the vault has one entry point per project.
+- Place `docs/adr/` and `reports/` under the same resolved root so all durable knowledge stays co-located and linkable.
+- Record the resolved vault path in `Context.md` so the location is visible inside the vault, not only in the committed config.
+
+Only `devbuddy.config.md` is committed to the project; memory content lives in the vault and is not version-controlled by the repo. A teammate without the vault will see the pointer but no memory content, which is expected.
+
 ## Memory Files
 
 - `Context.md`: technical architecture, modules, data flow, dependencies, runtime behavior, and test strategy.
@@ -125,7 +148,7 @@ Before implementation, include:
 - `DecisionLog.md`: durable decisions, trade-offs, alternatives, and rationale.
 - `KnowledgeBase.md`: lessons learned, anti-patterns, bug prevention, and proven solutions.
 
-Read these files only when they materially help the task. Preserve existing knowledge. Update only relevant sections. Mark assumptions clearly.
+Read these files, at the location resolved above, only when they materially help the task. Preserve existing knowledge. Update only relevant sections. Mark assumptions clearly.
 
 ## Definition of Done
 
@@ -150,6 +173,23 @@ Read only the relevant files when deeper guidance is needed:
 - `workflows/planning-workflow.md`
 - `workflows/implementation-workflow.md`
 - `workflows/review-workflow.md`
+- `workflows/debugging-workflow.md`
 - `workflows/learning-workflow.md`
 - `workflows/angular-new-app-workflow.md`
 - `workflows/dotnet-new-app-workflow.md`
+
+The task classes in the Operating Rule map to these workflows: analysis/planning to `analyze-workflow.md` and `planning-workflow.md`, implementation to `implementation-workflow.md`, review to `review-workflow.md`, debugging to `debugging-workflow.md`, and learning to `learning-workflow.md`.
+
+## Principles
+
+Read a principle only when it directly sharpens the current decision. These capture the reasoning behind the workflow so guidance stays adaptable rather than rote:
+
+- `principles/understanding.md`: understand intent and existing behavior before changing code.
+- `principles/business.md`: keep business goals and rules in view while implementing.
+- `principles/context.md`: maintain project memory incrementally.
+- `principles/planning.md`: plan the smallest maintainable change and surface risk.
+- `principles/simplicity.md`: prefer deleting, simplifying, and reusing over adding.
+- `principles/clean-code.md`: favor clear names, small units, and low coupling.
+- `principles/solid.md`: apply SOLID pragmatically, only where it removes real complexity.
+- `principles/review.md`: review for correctness, business fit, security, and testability.
+- `principles/learning.md`: separate durable lessons from task-local detail.

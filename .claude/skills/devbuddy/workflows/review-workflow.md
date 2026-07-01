@@ -6,3 +6,5 @@ Check business behavior, edge cases, error handling, security, performance, read
 
 Report issues first, then residual risks and verification status.
 
+Use `templates/review-template.md` under `reports/reviews/` when a durable review record is useful.
+

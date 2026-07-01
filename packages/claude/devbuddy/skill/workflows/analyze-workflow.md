@@ -6,5 +6,5 @@
 4. Identify existing behavior and expected behavior from the smallest reliable evidence.
 5. Map business rules and technical constraints that materially affect correctness.
 6. Record unknowns that materially affect correctness.
-7. Update relevant memory sections if durable project understanding was learned and the host workflow allows file edits.
+7. Update relevant memory sections if durable project understanding was learned and the host workflow allows file edits. Use `templates/context-template.md` and `templates/business-template.md` under `reports/analysis/` when a durable analysis record is useful.
 

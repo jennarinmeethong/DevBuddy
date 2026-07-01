@@ -13,3 +13,5 @@ Create a plan with:
 
 The plan must favor the smallest maintainable change that satisfies the business requirement.
 
+Use `templates/plan-template.md` under `reports/plans/` when a durable plan record is useful.
+

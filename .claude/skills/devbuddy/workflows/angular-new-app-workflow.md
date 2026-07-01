@@ -2,6 +2,8 @@
 
 Use this workflow when the user wants a new Angular application.
 
+When an installed Angular-specific skill is available, prefer it for scaffolding and framework procedure (see `references/optional-specialized-skills.md`); use this workflow as the fallback and as the orchestration entry that returns to DevBuddy for planning, review, and memory.
+
 1. Determine whether the user requested a specific Angular version.
 2. If a version is specified, use `npx @angular/cli@<requested_version> new <app-name> --interactive=false` and add flags from the request.
 3. If no version is specified, check for an existing Angular CLI with `ng version`.

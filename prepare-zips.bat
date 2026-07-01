@@ -6,6 +6,11 @@ set "PACKAGES=%ROOT%packages"
 set "CLAUDE_SRC=%ROOT%\.claude\skills\devbuddy"
 set "CLAUDE_ZIP=%PACKAGES%\devbuddy-claude.zip"
 
+rem Sync canonical skill\ into the mirrors first so the archive is never built
+rem from a stale copy.
+call "%ROOT%sync-sources.bat"
+if errorlevel 1 exit /b %errorlevel%
+
 if not exist "%CLAUDE_SRC%\SKILL.md" (
   echo Missing Claude package source: %CLAUDE_SRC%
   exit /b 1

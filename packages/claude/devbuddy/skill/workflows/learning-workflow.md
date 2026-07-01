@@ -8,3 +8,7 @@ After significant implementation, bug fixes, reviews, or incidents:
 4. Update `DecisionLog.md` when a durable trade-off was chosen.
 5. Update `Context.md` or `BusinessContext.md` when project understanding changed.
 
+Use `templates/learning-template.md` under `reports/lessons-learned/` when a durable lesson record is useful.
+
+When memory resolves to an Obsidian vault (see `Memory Location` in `SKILL.md`), preserve or add YAML frontmatter, keep the `[[wikilinks]]` between memory files, and refresh the per-project index note as part of the update.
+

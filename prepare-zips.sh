@@ -6,6 +6,10 @@ PACKAGES="$ROOT/packages"
 CLAUDE_SRC="$ROOT/.claude/skills/devbuddy"
 CLAUDE_ZIP="$PACKAGES/devbuddy-claude.zip"
 
+# Sync canonical skill/ into the mirrors first so the archive is never built
+# from a stale copy.
+"$ROOT/sync-sources.sh"
+
 if [[ ! -f "$CLAUDE_SRC/SKILL.md" ]]; then
   echo "Missing Claude package source: $CLAUDE_SRC" >&2
   exit 1
