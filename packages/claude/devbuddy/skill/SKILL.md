@@ -48,6 +48,16 @@ Ask when business rules materially affect the task and cannot be discovered from
 - If an intended command is unavailable on the machine, stop and ask before switching to an alternative tool or package manager. For example, if `npm` is not found, ask whether to use an available alternative such as `bun`, `yarn`, or `pnpm`.
 - When creating new tests, prefer a dedicated top-level `tests/` folder, organized clearly like project documentation folders. Follow an established repository test layout when one already exists and is clearly intentional.
 
+## Loop Engineering
+
+Loop Engineering is an autonomous `execute -> verify -> refine` cycle for repetitive, verification-driven work such as applying one change across many files, a migration, fixing until tests pass, or hunting an intermittent failure.
+
+- When the user runs a `/devbuddy loop ...` command or clearly asks to "keep going until" a condition holds, enter Loop Engineering directly.
+- When a task looks loop-shaped but the user did not ask for a loop, say why and ask before entering. Do not auto-start a loop.
+- Always define a testable exit condition and a max iteration count up front, keep a per-iteration summary, and stop and ask when progress stalls or the next step is hard to reverse or out of scope. Loop implementation still respects the plan-approval gate.
+
+Read `workflows/loop-workflow.md` for the full procedure.
+
 ## Tech Stack Delegation
 
 For stack-specific tasks, keep this skill responsible for senior-engineering workflow: business analysis, architecture review, planning, implementation discipline, review, and memory updates.
@@ -104,6 +114,16 @@ Delete -> Simplify -> Reuse -> Refactor -> Build
 ```
 
 Apply SOLID and Clean Code pragmatically. Create abstractions only when they remove real complexity, reduce meaningful duplication, or match an established project pattern.
+
+## Reusable Tools
+
+When a task is the kind of work that will recur, capture it as a small, parameterized tool the agent can rerun later instead of redoing the work by hand. This is the `Build` rung of the heuristic above, so build a tool only when reuse is genuinely likely (roughly two or more future uses); one-off work stays inline.
+
+- Prefer Python. If Python is unavailable, ask which SDKs or runtimes the machine has and pick an installed language (for example C#, bun, Node.js, bash); if nothing suitable exists, stay inline.
+- Store generated tools in a `tools/` folder at the resolved memory root (beside `Context.md`), indexed in `tools/README.md` so they stay discoverable and get reused. Keep each tool dynamic and its output minimal.
+- Before running an existing tool, confirm its runtime is still present; if the runtime is gone, ask whether to rebuild it rather than silently rewriting.
+
+Read `references/reusable-tools.md` for the full convention.
 
 ## Required Planning Output
 
@@ -169,16 +189,18 @@ Read only the relevant files when deeper guidance is needed:
 - `capabilities/understand-angular-project.md`
 - `capabilities/understand-dotnet-project.md`
 - `references/tech-stack-routing.md`
+- `references/reusable-tools.md`
 - `workflows/analyze-workflow.md`
 - `workflows/planning-workflow.md`
 - `workflows/implementation-workflow.md`
+- `workflows/loop-workflow.md`
 - `workflows/review-workflow.md`
 - `workflows/debugging-workflow.md`
 - `workflows/learning-workflow.md`
 - `workflows/angular-new-app-workflow.md`
 - `workflows/dotnet-new-app-workflow.md`
 
-The task classes in the Operating Rule map to these workflows: analysis/planning to `analyze-workflow.md` and `planning-workflow.md`, implementation to `implementation-workflow.md`, review to `review-workflow.md`, debugging to `debugging-workflow.md`, and learning to `learning-workflow.md`.
+The task classes in the Operating Rule map to these workflows: analysis/planning to `analyze-workflow.md` and `planning-workflow.md`, implementation to `implementation-workflow.md`, review to `review-workflow.md`, debugging to `debugging-workflow.md`, and learning to `learning-workflow.md`. Repetitive, verification-driven work (explicit `/devbuddy loop`, or an agent-detected loop-shaped task confirmed with the user) runs through `loop-workflow.md`.
 
 ## Principles
 

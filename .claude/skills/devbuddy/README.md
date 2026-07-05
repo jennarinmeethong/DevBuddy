@@ -70,6 +70,22 @@ Document Learning
 Update Memory
 ```
 
+## Loop Engineering
+
+For repetitive, verification-driven work, DevBuddy can run an autonomous `execute -> verify -> refine` loop:
+
+- Run `/devbuddy loop ...` (or ask to "keep going until" a condition holds) to start it directly.
+- When a task looks loop-shaped but you did not ask for a loop, DevBuddy explains why and asks before entering — it does not auto-start.
+- Every loop defines a testable exit condition and a max iteration count up front, and stops to ask when progress stalls or the next step is hard to reverse. See `workflows/loop-workflow.md`.
+
+## Reusable Tools
+
+When a task will recur, DevBuddy can capture it as a small, parameterized tool instead of redoing the work by hand:
+
+- Tools are built only for genuinely recurring work (the last resort in the `Delete -> Simplify -> Reuse -> Refactor -> Build` order).
+- Python is preferred; if it is missing, DevBuddy asks which SDKs/runtimes the machine has and picks an installed language.
+- Generated tools live in a `tools/` folder at the project memory root (beside `Context.md`), indexed in `tools/README.md`. They are project-local and are not synced with the skill. See `references/reusable-tools.md`.
+
 ## Memory Files
 
 - `Context.md`: technical project understanding.

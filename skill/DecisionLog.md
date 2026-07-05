@@ -86,6 +86,13 @@ Alternatives: Expand `analyze` and `qa` to cover these duties; rename existing Q
 Trade-offs: More profiles increase adapter maintenance, but clearer role boundaries improve routing, output quality, and team-style handoffs. Keeping QA separate preserves post-change quality review while Tester focuses on test cases, execution, and evidence.
 Outcome: Add shared and Claude profiles for `ba`, `sa`, and `tester`; update agent routing, role lists, package copies, and user-facing guidance.
 
+Date: 2026-07-05
+Decision: Add guardrailed Loop Engineering and a reusable-tools convention as orchestrator-level behaviors.
+Context: The user wants DevBuddy to run an autonomous execute-verify-refine loop for repetitive, verification-driven work (triggered by `/devbuddy loop` or agent-detected and confirmed), and to capture recurring work as small parameterized tools instead of redoing it by hand.
+Alternatives: Open-ended loop with no exit condition; auto-starting loops without asking; adding loop/tools as new role profiles; bundling generated tools inside the version-controlled skill; making tools Python-only and blocking when Python is absent.
+Trade-offs: Requiring a testable exit condition, a max iteration count, and stop-and-ask triggers adds up-front definition but bounds runaway loops. Asking before entering an auto-detected loop adds one interaction but prevents surprise autonomy. Keeping generated tools at the project memory root (not synced) keeps the distributed skill clean at the cost of tools being per-project. Python-first with an ask-then-choose-installed-language fallback avoids blocking on missing runtimes; asking before rebuilding a tool whose runtime disappeared avoids silent rewrites.
+Outcome: Add `workflows/loop-workflow.md` and `references/reusable-tools.md`; add Loop Engineering and Reusable Tools sections plus reference-list entries to `SKILL.md`; add hooks in `workflows/implementation-workflow.md`; document both in `README.md`. No new role profiles; `.claude/agents/*` scope unchanged. No `sync-sources.sh` change (memory-root `tools/` is preserved via rsync without `--delete`).
+
 Use this format:
 
 ```text
