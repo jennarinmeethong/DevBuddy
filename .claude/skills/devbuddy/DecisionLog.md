@@ -79,6 +79,13 @@ Alternatives: Expand `analyze` and `qa` to cover these duties; rename existing Q
 Trade-offs: More profiles increase adapter maintenance, but clearer role boundaries improve routing, output quality, and team-style handoffs. Keeping QA separate preserves post-change quality review while Tester focuses on test cases, execution, and evidence.
 Outcome: Add shared and Claude profiles for `ba`, `sa`, and `tester`; update agent routing, role lists, package copies, and user-facing guidance.
 
+Date: 2026-07-10
+Decision: Add bidirectional per-role model-selection guidance to subagent orchestration instead of pinning per-role models.
+Context: All ten Claude subagents use `model: inherit`, so every call runs whatever model invoked the main agent. The Agent-tool accepts a per-call `model` override, but nothing told the orchestrator when to use it, so both escalating to a stronger model for high-risk work and de-escalating to a lighter model for routine work went unused.
+Alternatives: Pin specific models in each `.claude/agents/*` frontmatter file; add one generic "escalate to opus when complex" rule with no de-escalation and no per-role detail; leave model selection undocumented.
+Trade-offs: A per-role table is more to maintain than one generic sentence, but gives concrete, role-specific signals instead of one-size-fits-all judgment. Keeping `.claude/agents/*` at `model: inherit` avoids hardcoding model choice into version-controlled frontmatter and keeps the decision at call time, where the orchestrator has actual task context.
+Outcome: Add a "Model Selection" section with a per-role (analyze, ba, sa, frontend, backend, qa, tester, docs, data, operations) simple/default/complex table to `agents/shared/orchestration.md`; update `SKILL.md`'s orchestration pointer sentence; add a short "Model Selection" summary to `README.md`. No `.claude/agents/*` frontmatter changes -- all ten subagents remain `model: inherit`. No `sync-sources.sh` change needed (prose-only edits inside `skill/`).
+
 Use this format:
 
 ```text

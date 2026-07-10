@@ -33,6 +33,27 @@ Avoid subagents when the task is narrow, the main agent already has enough conte
 
 When a task names a stack or when role ownership is ambiguous, read `references/tech-stack-routing.md` and route by affected behavior. Use both `frontend` and `backend` for cross-stack work such as Next.js, Nuxt, SvelteKit, or Blazor when UI behavior and server/runtime behavior both affect correctness.
 
+## Model Selection
+
+The Agent-tool call that invokes a subagent accepts an optional `model` override (`sonnet`, `opus`, `haiku`, `fable`). When present, it takes precedence over that subagent's own `model: inherit` frontmatter for that one call.
+
+Default to no override: let the subagent inherit whatever model is running the main agent. Only pass an explicit `model` when the task clearly signals it — routine, narrow, low-ambiguity work toward a lighter model, or high-risk, high-ambiguity, hard-to-reverse work toward a stronger model. Do not override on a hunch; the signal must come from scope, blast radius, ambiguity, or reversibility.
+
+| Role | Simple -> `haiku` | Default -> `inherit` | Complex/high-risk -> `opus` |
+|---|---|---|---|
+| `analyze` | Narrow, single-answer lookup (e.g. "where is X defined") | Typical multi-file discovery and affected-area mapping | Cross-cutting discovery in an unfamiliar/large subsystem, or findings that change plan scope |
+| `ba` | Restating or confirming an already-stated acceptance criterion | Normal requirement gathering, workflow mapping for a typical feature | Conflicting stakeholder needs, contested business rules, prioritization with compliance/revenue impact |
+| `sa` | Confirming an existing pattern applies; documenting a known data flow | Normal module boundary or API/data-flow design | Cross-system integration decisions, NFR trade-offs, hard-to-reverse architecture choices |
+| `frontend` | Small isolated UI tweak with an obvious pattern to copy | Typical component/feature work following established patterns | Cross-cutting UI architecture change, state-management redesign, accessibility overhaul |
+| `backend` | Trivial CRUD/config/validation change following an exact pattern | Typical API, service, or persistence change of normal scope | Security-sensitive change (auth, payments), concurrency-critical code, complex migration |
+| `qa` | Routine checklist review of a small, low-risk diff | Normal regression-risk review for a typical change | High-risk review (security, data integrity) or subtle regression risk |
+| `tester` | Straightforward test cases for a well-understood, low-risk change | Typical test case design and execution for a feature/bugfix | Test strategy for a complex/ambiguous defect or high-stakes regression suite |
+| `docs` | Changelog entry, typo fix, small tweak mirroring existing style | Normal doc update for a feature | Restructuring docs across synced trees where wording encodes a design decision |
+| `data` | Well-understood, additive schema tweak following an existing pattern | Typical schema change or migration for a feature | Irreversible/high-risk migration, correctness-critical query redesign |
+| `operations` | Small explicit low-risk config tweak in an already-requested change | Typical, explicitly requested CI/CD or deployment change | Production release/rollback strategy or infra change with broad blast radius |
+
+Model Selection is orthogonal to Token Policy below: Token Policy governs how much context and output volume flows through a call; Model Selection governs which model handles it. Adjust either independently.
+
 ## Context Contract
 
 When routing work, include only:

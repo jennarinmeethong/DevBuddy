@@ -93,6 +93,13 @@ Alternatives: Open-ended loop with no exit condition; auto-starting loops withou
 Trade-offs: Requiring a testable exit condition, a max iteration count, and stop-and-ask triggers adds up-front definition but bounds runaway loops. Asking before entering an auto-detected loop adds one interaction but prevents surprise autonomy. Keeping generated tools at the project memory root (not synced) keeps the distributed skill clean at the cost of tools being per-project. Python-first with an ask-then-choose-installed-language fallback avoids blocking on missing runtimes; asking before rebuilding a tool whose runtime disappeared avoids silent rewrites.
 Outcome: Add `workflows/loop-workflow.md` and `references/reusable-tools.md`; add Loop Engineering and Reusable Tools sections plus reference-list entries to `SKILL.md`; add hooks in `workflows/implementation-workflow.md`; document both in `README.md`. No new role profiles; `.claude/agents/*` scope unchanged. No `sync-sources.sh` change (memory-root `tools/` is preserved via rsync without `--delete`).
 
+Date: 2026-07-10
+Decision: Add bidirectional per-role model-selection guidance to subagent orchestration instead of pinning per-role models.
+Context: All ten Claude subagents use `model: inherit`, so every call runs whatever model invoked the main agent. The Agent-tool accepts a per-call `model` override, but nothing told the orchestrator when to use it, so both escalating to a stronger model for high-risk work and de-escalating to a lighter model for routine work went unused.
+Alternatives: Pin specific models in each `.claude/agents/*` frontmatter file; add one generic "escalate to opus when complex" rule with no de-escalation and no per-role detail; leave model selection undocumented.
+Trade-offs: A per-role table is more to maintain than one generic sentence, but gives concrete, role-specific signals instead of one-size-fits-all judgment. Keeping `.claude/agents/*` at `model: inherit` avoids hardcoding model choice into version-controlled frontmatter and keeps the decision at call time, where the orchestrator has actual task context.
+Outcome: Add a "Model Selection" section with a per-role (analyze, ba, sa, frontend, backend, qa, tester, docs, data, operations) simple/default/complex table to `agents/shared/orchestration.md`; update `SKILL.md`'s orchestration pointer sentence; add a short "Model Selection" summary to `README.md`. No `.claude/agents/*` frontmatter changes -- all ten subagents remain `model: inherit`. No `sync-sources.sh` change needed (prose-only edits inside `skill/`).
+
 Use this format:
 
 ```text

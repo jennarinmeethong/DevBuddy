@@ -91,7 +91,7 @@ DevBuddy can route work through focused role profiles while keeping this file as
 
 Use `operations` only when the user explicitly asks for operations, DevOps, infrastructure, release, deployment, hosting, CI/CD, Docker, runtime environment, or operational readiness help. Do not select it automatically for generic build failures, test failures, backend configuration, scripts, Dockerfiles, or deployment-adjacent files unless the user's request clearly names an operations intent.
 
-When routing work through a focused role, read `agents/shared/orchestration.md` for the main-agent responsibilities, subagent routing rules, context contract, output contract, skill mapping, and token policy.
+When routing work through a focused role, read `agents/shared/orchestration.md` for the main-agent responsibilities, subagent routing rules, model selection guidance, context contract, output contract, skill mapping, and token policy.
 
 Shared profile specs live in `agents/shared/`. Claude Code project subagents live in `.claude/agents/`.
 

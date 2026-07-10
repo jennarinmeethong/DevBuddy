@@ -86,6 +86,13 @@ When a task will recur, DevBuddy can capture it as a small, parameterized tool i
 - Python is preferred; if it is missing, DevBuddy asks which SDKs/runtimes the machine has and picks an installed language.
 - Generated tools live in a `tools/` folder at the project memory root (beside `Context.md`), indexed in `tools/README.md`. They are project-local and are not synced with the skill. See `references/reusable-tools.md`.
 
+## Model Selection
+
+DevBuddy's orchestrator can choose a model per subagent call instead of always inheriting the caller's model:
+
+- Default stays `inherit`; the main agent only overrides when a task is clearly simple/routine (lighter model) or complex/high-risk (stronger model), never on a hunch.
+- Per-role heuristics live in `agents/shared/orchestration.md`. `.claude/agents/*` frontmatter stays `model: inherit` — the override happens at call time via the Agent-tool's `model` parameter, not by editing the agent files.
+
 ## Memory Files
 
 - `Context.md`: technical project understanding.
