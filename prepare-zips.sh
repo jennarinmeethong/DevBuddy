@@ -24,8 +24,10 @@ mkdir -p "$CLAUDE_SKILL_ROOT"
 cp -R "$CLAUDE_SRC/." "$CLAUDE_SKILL_ROOT/"
 find "$CLAUDE_SKILL_ROOT" -name ".DS_Store" -delete
 
+# Claude requires SKILL.md at the archive root (no wrapping folder), so we
+# archive the CONTENTS of the skill folder rather than the folder itself.
 if command -v zip >/dev/null 2>&1; then
-  (cd "$TEMP_ROOT" && zip -qr "$CLAUDE_ZIP" devbuddy -x "*/.DS_Store" "__MACOSX/*")
+  (cd "$CLAUDE_SKILL_ROOT" && zip -qr "$CLAUDE_ZIP" . -x "./.DS_Store" "*/.DS_Store" "__MACOSX/*")
 else
   POWERSHELL_BIN=""
   if command -v pwsh >/dev/null 2>&1; then
@@ -51,10 +53,13 @@ else
 
   CLAUDE_INSTALL_ROOT_PS="$(ps_path "$CLAUDE_SKILL_ROOT")"
   CLAUDE_ZIP_PS="$(ps_path "$CLAUDE_ZIP")"
+  HELPER_PS="$(ps_path "$ROOT/prepare-claude-zip.ps1")"
 
-  "$POWERSHELL_BIN" -NoProfile -ExecutionPolicy Bypass -Command \
-    "\$ErrorActionPreference = 'Stop';" \
-    "Compress-Archive -LiteralPath '$CLAUDE_INSTALL_ROOT_PS' -DestinationPath '$CLAUDE_ZIP_PS' -CompressionLevel Optimal;"
+  # Reuse the shared helper so the PowerShell fallback produces the same
+  # Claude-compatible layout as the zip path above (SKILL.md at root,
+  # forward-slash entries).
+  "$POWERSHELL_BIN" -NoProfile -ExecutionPolicy Bypass -File "$HELPER_PS" \
+    -Source "$CLAUDE_INSTALL_ROOT_PS" -Destination "$CLAUDE_ZIP_PS"
 fi
 
 echo "Created $CLAUDE_ZIP"

@@ -796,7 +796,11 @@ memory_root: docs/devbuddy</code></pre>
 ├── .claude/
 │   ├── skills/devbuddy/          ← mirror ที่เปิดใช้ /devbuddy (+ live memory ของ repo นี้)
 │   └── agents/                   ← Claude Code subagent adapters (devbuddy-*)
-└── packages/claude/devbuddy/skill/  ← packaged mirror ของ skill/</code></pre>
+└── packages/
+    ├── claude/devbuddy/          ← project-agents bundle (ไม่ใช่ skill folder)
+    │   ├── .claude/agents/       ← สำเนา subagents (devbuddy-*)
+    │   └── skill/                ← packaged mirror ของ skill/ (SKILL.md อยู่ใต้ skill/)
+    └── devbuddy-claude.zip       ← skill zip: SKILL.md อยู่ที่ root ของ zip (git ignored)</code></pre>
 
       <h3>กฎการดูแล Adapter</h3>
       <ul>
@@ -815,6 +819,42 @@ memory_root: docs/devbuddy</code></pre>
       <div class="callout warn">
         <span class="t">ไฟล์ที่ sync ไม่ทับ</span>
         per-project memory (<code>Context.md</code>, <code>BusinessContext.md</code>, <code>DecisionLog.md</code>, <code>KnowledgeBase.md</code>, <code>plan.md</code>) เป็น runtime state ที่ diverge ต่อ install ได้อย่างถูกต้อง — sync จึงไม่ copy ทับ
+      </div>
+
+      <h3>Distribution Artifacts — folder ไหนเอาไปวางที่ไหน</h3>
+      <p>โปรเจกต์นี้สร้าง Claude artifact <strong>2 ชิ้น</strong> คนละวัตถุประสงค์กัน เลือกใช้ให้ตรงกับวิธีติดตั้ง</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Artifact</th><th>SKILL.md อยู่ไหน</th><th>ใช้ทำอะไร</th></tr></thead>
+          <tbody>
+            <tr><td><code>packages/devbuddy-claude.zip</code></td><td><strong>root ของ zip</strong> (ไม่มี folder ครอบ, ใช้ forward-slash)</td><td>skill zip — upload ให้ Claude ตรง ๆ หรือแตกลง skills dir</td></tr>
+            <tr><td><code>packages/claude/devbuddy/</code></td><td>อยู่ใต้ <code>skill/SKILL.md</code></td><td>project-agents bundle — <em>ไม่ใช่</em> skill folder; copy subagents + shared content เข้า project</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <span class="t">ทำไม <code>packages/claude/devbuddy/</code> ไม่มี SKILL.md ที่ root</span>
+        มันไม่ใช่ skill folder โดยตั้งใจ — เป็นชุดสำหรับ copy เข้า project. subagents ต้องแยกออกมาเพราะ skill zip ติดตั้งไปที่ <code>.claude/skills/&lt;name&gt;/</code> เท่านั้น วางไฟล์ลง <code>.claude/agents/</code> ของ project ไม่ได้
+      </div>
+
+      <p><strong>Artifact 1 — skill zip:</strong> เพราะ <code>SKILL.md</code> อยู่ที่ root ของ zip แล้ว การแตก zip <em>เข้าไปใน</em> <code>.claude/skills/devbuddy/</code> จะได้ layout ที่ถูกต้องทันที</p>
+      <pre><code>&lt;project&gt;/.claude/skills/devbuddy/SKILL.md      # per-project install
+~/.claude/skills/devbuddy/SKILL.md              # global install</code></pre>
+
+      <p><strong>Artifact 2 — project-agents bundle:</strong> copy 2 ส่วนนี้เข้า project root แยกกัน</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>copy จาก bundle</th><th>ไปวางที่</th><th>หน้าที่</th></tr></thead>
+          <tbody>
+            <tr><td><code>packages/claude/devbuddy/.claude/agents/</code></td><td><code>&lt;project&gt;/.claude/agents/</code></td><td>subagents <code>devbuddy-*</code> ทั้ง 10 ตัว</td></tr>
+            <tr><td><code>packages/claude/devbuddy/skill/</code></td><td><code>&lt;project&gt;/skill/</code></td><td>shared workflow/reference ที่ subagents อ่าน</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout ok">
+        <span class="t">ทำไม 2 artifact ถึง overlap กัน</span>
+        <code>.claude/skills/devbuddy/</code> (Artifact 1) และ <code>packages/claude/devbuddy/skill/</code> (Artifact 2) ต่างเป็น mirror ของ canonical <code>skill/</code> ที่ <code>sync-sources</code> คอย sync ให้ตรงกัน
       </div>
 
       <h3>จะแก้อะไร ต้องแก้ตรงไหนก่อน</h3>
@@ -854,6 +894,7 @@ memory_root: docs/devbuddy</code></pre>
       <ul>
         <li>repo นี้มี path per-project ให้แล้ว → เรียกใช้ด้วย <code>/devbuddy</code> ได้</li>
         <li>ถ้าเปิด Claude Code อยู่ก่อนที่ <code>.claude/skills/</code> จะมี → restart Claude Code จาก root ของ repo</li>
+        <li>ติดตั้งจาก zip: <code>devbuddy-claude.zip</code> มี <code>SKILL.md</code> อยู่ที่ <strong>root</strong> อยู่แล้ว จึงแตก zip เข้าไปใน <code>.claude/skills/devbuddy/</code> ได้ layout ที่ถูกต้องทันที (ดู §18 Distribution Artifacts)</li>
         <li>แก้ source ก่อน แล้วค่อย rebuild package layout + archive จาก source ที่อัปเดต (zip ที่ rebuild ได้ถูก git ignore ไว้)</li>
       </ul>
       <div class="callout ok">

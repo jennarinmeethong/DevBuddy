@@ -18,19 +18,9 @@ if not exist "%CLAUDE_SRC%\SKILL.md" (
 
 if exist "%CLAUDE_ZIP%" del /f /q "%CLAUDE_ZIP%"
 
-powershell -NoProfile -ExecutionPolicy Bypass -Command ^
-  "$ErrorActionPreference = 'Stop';" ^
-  "$tempRoot = Join-Path ([System.IO.Path]::GetTempPath()) ('devbuddy-package-' + [guid]::NewGuid().ToString('N'));" ^
-  "$claudeSkillRoot = Join-Path $tempRoot 'devbuddy';" ^
-  "try {" ^
-  "  New-Item -ItemType Directory -Path $claudeSkillRoot -Force | Out-Null;" ^
-  "  Copy-Item -Path '%CLAUDE_SRC%\*' -Destination $claudeSkillRoot -Recurse -Force;" ^
-  "  Get-ChildItem -LiteralPath $claudeSkillRoot -Recurse -Force -Filter '.DS_Store' | Remove-Item -Force;" ^
-  "  Compress-Archive -LiteralPath $claudeSkillRoot -DestinationPath '%CLAUDE_ZIP%' -CompressionLevel Optimal;" ^
-  "  if (!(Test-Path -LiteralPath '%CLAUDE_ZIP%')) { throw 'Archive was not created: %CLAUDE_ZIP%' }" ^
-  "} finally {" ^
-  "  if (Test-Path -LiteralPath $tempRoot) { Remove-Item -LiteralPath $tempRoot -Recurse -Force }" ^
-  "}"
+rem Build the archive via the shared helper so SKILL.md lands at the zip root
+rem with forward-slash entry paths, exactly as Claude's skill uploader expects.
+powershell -NoProfile -ExecutionPolicy Bypass -File "%ROOT%prepare-claude-zip.ps1" -Source "%CLAUDE_SRC%" -Destination "%CLAUDE_ZIP%"
 
 if errorlevel 1 exit /b %errorlevel%
 
